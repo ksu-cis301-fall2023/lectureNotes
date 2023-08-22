@@ -3,12 +3,13 @@ CIS 301. Logical Foundations of Programming.
 Julie Thornton.
 
 What is this class?
-- logical reasoning (basics, then puzzles)
-- proofs (why?)
+- thinking more formally
 - reasoning about code
     - analyzing what we know
     - identifying equivalent programs
     - simplifying programs
+- how to make claims in a more formal way
+- proofs (why?)
 - basics of proving correctness of programs (why?)
 
 
@@ -40,19 +41,14 @@ public int min(int[] nums)
     //How would we write this
     //to return the min element in nums?
 
-    int small = nums[0];
-
+    int curSmall = nums[0]; //come back
     for (int i = 1; i < nums.length; i++) {
-        //loop invariant
-        //after i iterations, small is
-        //the smallest of the first i elements in nums
-
-        if (small < nums[i]) {
-            small = nums[i];
+        if (nums[i] < curSmall) {
+            curSmall = nums[i];
         }
     }
 
-    return small;
+    return curSmall;
 }
 
 //elsewhere
@@ -60,7 +56,7 @@ int[] test = {7,-5,0,-5,3,2};
 int result = min(test);
 
 
---> what value should result have?
+--> what value should result have? -5
 
 
 
@@ -68,35 +64,32 @@ int result = min(test);
 --> what could min *promise* to return that would guarantee our
     answer?
 
-parameter: int array
+parameter: nums (int[])
 
 min promises to...
+return a number that is less than or equal to every element in nums
+    and that number is also an element in nums
 
+    and in the case of duplicates, returns the first such instance
 
---> what do we call this "promise?"
-
-
-
-
-
---> what should be true at the end of each iteration in our loop
-    to be sure we'll return the right thing?
+--> what do we call this "promise?" postcondition
 
 
 
-
---> what is this description called?
 
 
 
 
 --> in what situations would min not work?
 
-
+when the parameter array has no elements
 
 
 --> what do we need to require about min? What is this called?
 
+preconditions
+
+requires nums is not null and nums.length > 0
 
 
 /////////////////////////
@@ -121,7 +114,7 @@ Premise 2: Fred is wearing a red shirt.
 
 Conclusion: Fred doesn’t like pizza.
 
---> Is this a valid argument?
+--> Is this a valid argument? yes
 
 
 
@@ -134,15 +127,17 @@ Logical Arguments with ”OR”
 
 I order fries or I order chips.
 
+
+
 "or" can be inclusive or exclusive
 
 
 - in English, how do we interpret "or"?
 
+usually, exclusive (but it can be ambiguous)
 
 
-
-- in programming?
+- in programming? inclusive
 
 
 
@@ -156,6 +151,7 @@ Premise 2: I don't fold the laundry.
 
 --> What can I conclude?
 
+I'm going to do the dishes
 
 
 
@@ -171,22 +167,15 @@ if (num < 4 || x >= 10) {
 Suppose we know "statement" is executed
 --> What can we conclude?
 
+x >= 10
 
+Since "statement" executed, we know the if-statement must have
+been true. This means the condition, num < 4 || x >= 10, was true.
 
-
-
-
+Since num was 5 before the loop, we know num is NOT < 4. Thus
+the other side of the OR must have been true -- x >= 10.
 
 /////////////////////////////////////////////////////////
-
-What rule are we seeing with an ”or” statement,
-where we know that one of the statements is NOT true?
-
-
-
-
-
-////////////////////////////////////////////////////////
 
 x = 9;
 if (num < 4 || x >= 10) {
@@ -198,12 +187,28 @@ if (num < 4 || x >= 10) {
 
 
 Suppose we know "statement" is executed
---> What can we conclude?
+--> What can we conclude? num is 3
 
+Since the statement executed, we know the condition in both if-
+statements must have been true. This means that num > 2 and that
+num < 4 || x >= 10. Since x was initially 9, then x is NOT >= 10.
+In order for that condition to be true, we have that num < 4.
+Putting that together with the other condition, num > 2, we
+can conclude that num is 3.
 
+(This assumes that num is an integer.)
 
 
 /////////////////////////////////////////////////////////
+
+What rule are we seeing with an ”or” statement,
+where we know that one of the statements is NOT true?
+
+
+other part is true
+
+
+////////////////////////////////////////////////////////
 
 Logical Arguments with ”IF/THEN” (aka "implies" -> )
 
@@ -214,7 +219,7 @@ It is raining.
 
 
 
-
+I will get wet
 
 /////////////////////////////////////////////////////////
 
@@ -224,7 +229,7 @@ and we know that the ”if” part is true?
     ...what can we always conclude?
 
 
-
+the then part is true
 
 
 
@@ -236,7 +241,7 @@ I am late for class.
 --> What can I conclude?
 
 
-
+nothing! I might have been late for a number of reasons.
 
 
 
@@ -247,7 +252,8 @@ I hear my alarm.
 
 --> What can I conclude?
 
-
+again, nothing. I might still be late even if I hear my alarm
+(go back to sleep, car wreck, etc.)
 
 
 
@@ -262,7 +268,7 @@ If I don’t hear my alarm, then I will be late for class.
 
 --> What do we know if we AREN'T late?
 
-
+If I'm not late for class, then ...I must have heard the alarm.
 
 
 /////////////////////////////////////////////////////
@@ -274,7 +280,8 @@ if (num < 4 || x >= 10) {
 
 --> suppose y is 17 here. What do we know?
 
-
+we can't conclude anything. y might have been 17 before the
+if-statement.
 
 
 
@@ -289,6 +296,10 @@ if (num < 4 || x >= 10) {
 
 --> suppose y is 17 here. Can we conclude anything now?
 
+Here, since y was 10 before the if-statement and 17 afterwards,
+we can conclude that y must have been set to 17 inside the if-statement.
+
+Thus its condition must have been true: num < 4 || x >= 10
 
 
 /////////////////////////////////////////////////////
@@ -300,7 +311,10 @@ if (num < 4 || x >= 10) {
 
 --> suppose y is NOT 17 here. What do we know?
 
+We can conclude that the if-statement condition was false, because
+otherwise y WOULD be 17. This means that:
 
+num >= 4 and x < 10
 
 /////////////////////////////////////////////////////
 
