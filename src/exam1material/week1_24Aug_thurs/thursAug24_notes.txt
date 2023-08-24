@@ -5,7 +5,14 @@ HW 0 - due by midnight tonight (11:59 pm)
     - can turn in until midnight Friday for 10% late penalty
     - what link to submit
 
+
 HW 1 - due Tuesday, August 29
+
+    clarification on last question:
+
+    "...thief was either Deer, Bunny, or Fox..."
+
+EXCLUSIVE OR - just one animal is the thief
 
 ////////////////////////////////////////
 
@@ -41,7 +48,7 @@ Who can say, "I'm a knave"?
 Can a knight?
 Can a knave?
 
-
+Nobody!
 
 
 
@@ -55,9 +62,16 @@ Bob says, ”Neither Ava nor I are knaves.”
 
 What are Ava and Bob?
 
+Suppose Ava is a knight. Then Bob has to be a knave.
+    Then Bob's statement is a lie (as it should be)
+    because it is false that neither one is a knave.
 
+Suppose instead that Ava is a knave. Then Bob has to be a knight.
+      Then Bob's statement would not be true (since Ava is a knave)
+      but Bob should be telling the truth. Doesn't work.
 
-
+Ava: knight
+Bob: knave
 
 
 /////////////////////////////////
@@ -68,10 +82,17 @@ Eve says, ”I am a knave or Fred is a knight.”
 
 What are Eve and Fred?
 
-(what does the "or" mean?)
+(what does the "or" mean? INCLUSIVE)
 
+Suppose Eve is a knight. Then her statement can only be true
+    if Fred is a knight. At that point her OR statement is true,
+    as it should be for a knight.
 
+Suppose instead that Eve is a knave. It doesn't matter what
+    Fred is -- Eve's statement would be true in this case.
+    That shouldn't happen for a knave, so doesn't work.
 
+Both knights.
 
 ////////////////////////////////////
 
@@ -85,11 +106,21 @@ What types are Sarah, Bill, and Mae?
 
 How could we rewrite/simplify each statement?
 
-Sarah:
-Bill:
-Mae:
+Sarah: Bill is a knight
+Bill: Mae is a knight
+Mae: Bill would tell you that I am a knave
 
+Suppose Sarah is a knight. Then Bill has to be a knight,
+    which means Mae has to be a knight. Mae's statement doesn't
+    work -- Bill would say she is a knight, and Mae would tell
+    the truth about that.
 
+Suppose Sarah is a knave. Then Bill has to be a knave,
+    which means Mae is also a knave. Mae's statement works --
+    Bill would say she is a knight, but Mae would lie about
+    what Bill would say.
+
+Solution: all knaves
 
 ////////////////////////////////////
 
@@ -105,7 +136,23 @@ Unicorn says: ”Yesterday was one of my lying days, too.”
 
 What day is it?
 
+Monday: Lion's statement works -- he should lie, and
+    yesterday was NOT a lying day.
 
+    Unicorn: should be telling the truth, but that would be a lie.
+
+Tuesday/Wednesday/Friday/Saturday: yesterday WAS a lying day
+    for the current liar, so their statement won't work
+
+Thursday: works out. Yesterday was one of Lion's lying days
+    and he is telling the truth. Yesterday was not one of Unicorn's
+    lying days and unicorn is lying.
+
+Sunday:  Lion's statement doesn't work. He should be telling the truth
+    and Saturday was NOT a lying day.
+
+
+The day is: Thursday.
 
 
 
@@ -127,7 +174,10 @@ The second one says: ”I’m Tweedledee.”
 
 Which is which? What day is it?
 
+On every day but Sunday, one lies and one tells the truth.
+On those days they would give the SAME name.
 
+Must be Sunday. They are who they say they are.
 
 
 
@@ -141,9 +191,24 @@ Second twin: Today is Monday or Sunday
 
 What day of the week is it?
 
-(what kind of OR?)
+(what kind of OR?) inclusive
 
+Suppose first twin is telling the truth.
+    Then it could be Monday or it could be Wednesday.
 
+    Consider the other twin's statement. They must be lying
+    (it can't be Sunday because the first twin's statement
+    is supposed to be true and that wasn't one of the days
+    they listed). Can't be Monday - that would make the
+    second twin's statement true. Could be Wednesday.
+
+Suppose second twin is telling the truth. Must be Monday
+    or Sunday. Can't be Monday - would make first statement true
+    and other twin should be lying. Also can't be Sunday -
+    first twin should be telling truth and their statement would
+    be false.
+
+Must be Wednesday.
 
 //////////////////////////////////
 You know that either Tweedledum or Tweedledee has
@@ -152,6 +217,7 @@ You find it, and want to return it to the correct one.
 You don’t know what day it is, but are sure that it isn’t
     Sunday.
 
+(one is lying, one is telling the truth)
 
 The first one says: "Tweedledee owns the rattle.”
 
@@ -159,15 +225,26 @@ The second one says: ”I'm Tweedledee!”
 
 Who gets the rattle?
 
+Suppose first twin is the truth teller. Then the second twin
+    is the liar. Then Tweedledee must own the rattle. From
+    the second one's statement, we know the first twin is Tweedledee
+    and the second twin is Tweedledum.
 
+Suppose second twin is the truth teller. Then the first twin
+    is the liar. Evaluating, we have that Tweedledum owns the rattle.
+    We also have that the second twin is Tweedledee and
+    the first twin is Tweedledum.
 
+In both cases, the first twin owns the rattle. We give it to them.
+
+We DON'T know which is which.
 
 ///////////////////////////////////////////
 Based on Shakespeare's ”Merchant of Venice”.
 
 There are three caskets – one gold, one silver,
     and one lead.
-One of the caskets contains a portrait.
+Exactly one of the caskets contains a portrait.
 Each casket has a message on it, and you know that at most
     one of the messages is true.
 
@@ -176,6 +253,17 @@ Silver casket: ”The portrait is not in this casket.”
 Lead casket: ”The portrait is not in the gold casket.”
 
 Where is the portrait?
+
+Suppose portrait is in the gold casket.
+    NO - both gold and silver would be true
+
+Suppose portrait is in the silver casket
+    COULD WORK - gold/silver both false
+
+Suppose in lead: NO, silver/lead both true
+
+Must be in silver.
+
 
 
 
@@ -204,16 +292,20 @@ Cheryl privately tells Bernard her birthday day (number).
 Albert says: "I don't know when Cheryl's birthday is,
     but I know Bernard doesn't know too."
 
+    can't be May - the 19th is unique, and Bernard WOULD know
+    similarly, can't be June (the 18th is unique
 
 
 Bernard says: "At first I didn't know when Cheryl's
     birthday is, but now I do."
 
+    Can't be July 14 or Aug 14 or Bernard wouldn't be sure
 
 
 Albert says: "Then I also know when Cheryl's birthday is."
+    can't be Aug 15 or 17 or Albert wouldn't know
 
-
+    Must be July 16
 
 
 
@@ -256,28 +348,28 @@ AND:
 
 p q | p ∧ q
 ------------
-T T |
-T F |
-F T |
-F F |
+T T |   T
+T F |   F
+F T |   F
+F F |   F
 
 
 OR:
 
 p q | p ∨ q
 ------------
-T T |
-T F |
-F T |
-F F |
+T T |  T
+T F |  T
+F T |  T
+F F |  F
 
 
 NOT:
 
 p | ¬p
 -------
-T |
-F |
+T | F
+F | T
 
 ////////////////////////////////////////////////
 
@@ -295,12 +387,16 @@ Otherwise we have not.
 
 p q | p → q
 ------------
-T T |
-T F |
-F T |
-F F |
+T T |   T
+T F |   F
+F T |   T
+F F |   T
 
 How does the implies operator relate to programming?
+
+//////////////////////////////////////////
+
+(STOPPED HERE --> will do the rest on Tues Aug 29)
 
 //////////////////////////////////////////
 
