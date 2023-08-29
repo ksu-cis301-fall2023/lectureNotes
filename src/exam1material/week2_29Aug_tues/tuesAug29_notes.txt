@@ -75,6 +75,10 @@ Basic operations:
 
 Reminder: implies operator
 
+p -> q
+
+this is false when I have broken a promise
+
 ////////////////////////////////////////
 
 Compound truth tables.
@@ -90,7 +94,7 @@ Order of operations
 
 In math? 3 - 2 + 4 - 2 * 8
 
-
+(), exponents, */, +-
 
 
 For logic statements:
@@ -105,9 +109,9 @@ Given this statement:
 
     ¬p ∧ q ∨ r
 
-
 Add () to show the order of operations.
 
+(((¬p) ∧ q) ∨ r)
 
 
 Evaluate the above statement using these
@@ -117,21 +121,21 @@ p is T
 q is F
 r is F
 
-
+(((¬p) ∧ q) ∨ r) evaluates to false
 
 
 ////////////////////////////////////////////////
 
 Order of operations
     ¬ evaluates right to left
-        ¬¬p is equivalent to....
+        ¬¬p is equivalent to.... (¬(¬p))
 
     ∧ and ∨ evaluate left to right
-        p ∧ q ∧ r is equivalent to....
-        p ∨ q ∨ r is equivalent to....
+        p ∧ q ∧ r is equivalent to.... ((p ∧ q) ∧ r)
+        p ∨ q ∨ r is equivalent to.... ((p ∨ q) ∨ r)
 
     → evaluates right to left
-        p → q → r is equivalent to....
+        p → q → r is equivalent to.... (p → (q → r))
 
 
 
@@ -145,9 +149,11 @@ Top-level operator (what happens LAST?)
 ¬p ∧ q ∨ r
 
 
+top-level: OR (I do it last)
 
 How is this similar to a circuit?
 
+the one all the way to the right (do it last)
 
 ///////////////////////////////
 
@@ -157,6 +163,9 @@ rewrite with ():
 
 top-level operator?
 
+(p ∧ q) ∨ (r ∧ p)
+
+top-level: OR
 
 //////////////////////////////
 
@@ -164,7 +173,10 @@ p ∧ q ∧ r ∧ s
 
 rewrite with ():
 
-top-level operator?
+((p ∧ q) ∧ r) ∧ s
+
+
+top-level operator? rightmost AND
 
 ////////////////////////////////////////////////////
 
@@ -175,18 +187,46 @@ Contingent, contradictory, tautology
 
 Definitions/examples
 
+contingent - the overall statements is true for
+    some truth assignments and false for others
+
+    p
+
+    p = T
+    p = F
+
+contradictory - for all possible truth assignments,
+    the overall statement is false
+
+    p ^ !p
+
+    p = T
+    p = F
+
+tautology - for all possible truth assignments,
+    the overall statement is true
+
+    p V !p
+
+    p = T
+    p = F
+
 
 ////////////////////////////////////////
 
 Write a truth table for:
 
-(p ∧ q) → p
+p ∨ q → p
 
-
-p q | (p ∧ q) → p
+            *
+p q | p ∨ q → p
 ------------------
+T T |   T   T
+T F |   T   T
+F T |   T   F
+F F |   F   T
 
-
+Contingent
 
 --> need to evaluate statement on ALL possible truth assignments
 
@@ -209,6 +249,11 @@ parse trees
 
 
 --> how do they relate to programming?
+
+--> what is the "top-level operator" here?
+
+
+
 
 ////////////////////////////////////////
 
@@ -233,22 +278,22 @@ Propositional logic.
 
 Which ones are propositions?
 
-Today is Thursday.
+Today is Thursday. yes
 
 
-What time is it?
+What time is it? no
 
 
-x == 2
+x == 2 yes
 
 
-Pigs can fly.
+Pigs can fly. yes
 
 
-Drive carefully.
+Drive carefully. no
 
 
-y <= 4
+y <= 4 yes
 
 
 
@@ -267,21 +312,21 @@ Suppose we have these propositional atoms:
 
 How would we express these as English sentences?
 
-    ¬p:
+    ¬p: It is not below freezing
 
 
-    p ∧ q:
+    p ∧ q: It is below freezing and it is snowing
 
 
-    p → q :
+    p → q : If it is below freezing then it is snowing
 
 
-    ¬p → ¬q:
+    ¬p → ¬q: If it is not below freezing then it is not snowing
 
 
-    r ∨ s:
+    r ∨ s: if (y <= 4 || x == 2)
 
-    ¬r: 
+    ¬r: if (y > 4)
 
 ////////////////////////
 
