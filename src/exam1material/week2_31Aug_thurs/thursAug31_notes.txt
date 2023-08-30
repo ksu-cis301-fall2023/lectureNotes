@@ -1,0 +1,408 @@
+HW 2 due Tuesday, September 5
+
+--> will be creating 2 image files
+
+--> make sure those are added to your git repository!
+
+--> no office hours Monday, September 4
+
+
+
+HW 1, problem 5:
+
+Suppose we have the following code fragment:
+
+    if (j > 7 && j <= 13) {
+        if (j > 10) {
+            a = 4;
+        }
+    }
+    else {
+        b = 10;
+    }
+
+Just after the code fragment finishes, suppose we know that a is 4
+but that b is NOT 10. What can we conclude about j? Explain.
+
+/////////////////////////////////
+
+Today:
+
+- Another parse tree
+- A bit more with translations
+- Equivalent propositions
+- Proving equivalence with truth tables
+- DeMorgan's laws
+- Negating if-statements
+- Satisfiability
+- If time, begin proving arguments with truth tables
+
+/////////////////////////////////
+
+How do we draw parse trees again?
+
+Example: draw the parse tree for:
+
+(p ∨ ¬q) ∧ (r → q ∨ p)
+
+
+
+
+
+
+/////////////////////////////////
+
+Identifying propositional atoms:
+
+- true/false statements
+- as minimal as possible (don't contain any logical connectives)
+
+
+Example:
+
+You can't enroll for the course if you haven't taken the prerequisite.
+
+
+--> what are the propositional atoms?
+
+
+
+
+--> translate to propositional logic:
+
+
+
+
+
+--> more translations:
+
+if you can enroll, you have taken the prereq
+
+
+
+
+
+if you haven't taken the prereq, then you can't enroll
+
+
+
+
+Are these all equivalent?
+
+
+
+
+
+/////////////
+
+Example:
+
+if (x <= 2 || y >= 0) {
+    if (z != 17) {
+        answer = 25;
+    }
+}
+
+(what are we promising about answer?)
+
+if all those conditions are true, then answer will be 25
+
+
+
+
+
+
+
+--> what must be true if answer is NOT 25?
+
+if (x <= 2 || y >= 0) {
+    if (z != 17) {
+        answer = 25;
+    }
+}
+
+
+
+
+
+//////////////////////////////////
+
+Consider these two statements:
+
+
+
+1) If I am at least 16 years old, then I can drive a car.
+
+2) I'm not at least 16 years old or I can drive a car.
+
+
+--> how could we translate them to propositional logic statements?
+
+p:
+q:
+
+1)
+2)
+
+
+--> are they saying the same thing?
+
+
+
+
+--> how could we PROVE they have the same logical meaning?
+(equiv.logika)
+
+
+
+
+
+
+
+//////////////////////////////////
+
+DeMorgan's Laws.
+
+...DeMorgan has so many laws...these are a couple of them.
+
+
+
+
+if (a == 4 || a == 5) {
+    statements
+}
+
+How could we express the NEGATION
+(i.e., what condition would be true for the "else")?
+
+
+
+
+
+
+///
+
+if (a == 4 && b == 5) {
+    statements
+}
+
+How could we express the NEGATION
+(i.e., what condition would be true for the "else")?
+
+
+
+
+
+--> how can we express this in propositional logic?
+--> (These are DeMorgan's laws?)
+
+¬(p ∨ q) is equivalent to...
+
+¬(p ∧ q) is equivalent to...
+
+
+--> how can we prove DeMorgan's laws?
+
+(demorgan.logika)
+
+
+
+////////////////////////
+
+Another if-statement example.
+
+if (Character.isDigit(letter) == true || num < 10) {
+    statements
+}
+
+--> how would we negate it without using a ! operator?
+
+
+
+
+
+///////////////////////
+
+And one more. Negate this one:
+
+if ((y >= 4 && num != 14) || x > 0) {
+    statements
+}
+
+translate condition to propositional logic:
+
+
+
+negate it:
+
+
+resulting (negated) if-statement:
+
+
+
+
+///////////////////////
+
+Other equivalences (≡ means "is equivalent to").
+
+
+¬(p ∧ q) ≡ ¬p ∨ ¬q      (DeMorgan's laws)
+¬(p ∨ q) ≡ ¬p ∧ ¬q
+
+
+p ∧ T ≡ p               (identity laws)
+p ∨ F ≡ p
+
+
+p ∨ p ≡ p               (idempotent laws)
+
+
+¬(¬p) ≡ p               (double negation law)
+
+
+p ∨ q ≡ q ∨ p               (commutative laws)
+p ∧ q ≡ q ∧ p
+
+
+(p ∨ q) ∨ r ≡ p ∨ (q ∨ r)         (associative laws)
+(p ∧ q) ∧ r ≡ p ∧ (q ∧ r)
+
+
+p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)         (distributive laws)
+p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)
+
+
+
+p → q ≡ ¬q → ¬p         (contrapositive)
+p → q ≡ ¬p ∨ q          (can turn implies into an or)
+
+
+
+//////////////////////////
+
+are these equivalent?
+
+    (p → q) → r
+    p → (q → r)
+
+
+
+
+
+
+
+In general, how to show statements are NOT equivalent?
+
+/////////////////////////
+
+Satisfiability.
+
+- definition:
+
+
+- what kind of statement is satisfiable? what kind is not?
+
+
+
+- is this satisfiable?
+
+        (p ∨ ¬q) ∧ (q ∨ ¬r) ∧ (r ∨ ¬p)
+
+
+
+
+
+- Aside: P and NP problems
+
+running time programs
+
+can we solve a problem in polynomial time?
+
+can we check a solution to a problem in polynomial time?
+
+
+
+
+
+
+
+
+////////////////////////
+
+Proving an argument.
+
+*Premises* - pieces of information we are given (assume true)
+*Conclusion* - something we are trying to show logically follows
+    from our premises.
+
+
+///
+
+From HW 1:
+
+Suppose we know the following premises:
+
+    - If you have enough Frosted Flakes, then you won't go grocery shopping.
+
+    - You go grocery shopping
+
+
+What did we say we can conclude?
+
+How can we PROVE it?
+
+
+--> translations:
+    Premises?
+
+
+    Conclusion?
+
+
+--> truth table proof:
+
+
+
+///
+
+Another example.
+
+Suppose we know:
+
+    I am in the CS department.
+
+    If I am in the CS department or the ECE department,
+        then I have a CS account.
+
+    If I have a CS account, then I can log in to the CS lab computers.
+
+
+I want to prove:
+
+    I can log in to the CS lab computers.
+
+
+
+--> How would we translate to propositional logic?
+
+
+
+
+
+--> How might we demonstrate this with truth tables?
+
+
+
+
+
+
+
+
+/////////////////////////
+
+Next time:
+
+- counterexamples to arguments
+- why proofs with truth tables can be unwieldy
+- introduce minimal set of deduction rules
+- apply these rules to prove conclusions in propositional logic
