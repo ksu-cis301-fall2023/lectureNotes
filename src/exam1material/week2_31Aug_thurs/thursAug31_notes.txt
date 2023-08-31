@@ -7,6 +7,17 @@ HW 2 due Tuesday, September 5
 --> no office hours Monday, September 4
 
 
+HW 1, problem 7:
+
+You meet two inhabitants: Alex and Bartholomew.
+
+   Alex says: "Bartholomew would say that I am a knave."
+   Bartholomew says: "It's not the case that Alex is a knave."
+
+
+
+
+
 
 HW 1, problem 5:
 
@@ -23,6 +34,12 @@ Suppose we have the following code fragment:
 
 Just after the code fragment finishes, suppose we know that a is 4
 but that b is NOT 10. What can we conclude about j? Explain.
+
+a might have been 4 already - can't conclude anything from that.
+
+
+if b is not 10, couldn't have gone into else and must have gone into
+outer if, so j > 7 && j <= 13
 
 /////////////////////////////////
 
@@ -52,10 +69,12 @@ Example: draw the parse tree for:
 
 /////////////////////////////////
 
-Identifying propositional atoms:
+A *proposition* is a statement made up of:
+    - propositional atoms (minimal true/false statements that
+        don't contain any logical operators)
+    - joined together with connectors (∧, ∨, ¬, →)
 
-- true/false statements
-- as minimal as possible (don't contain any logical connectives)
+    resulting statements are either true or false
 
 
 Example:
@@ -65,12 +84,13 @@ You can't enroll for the course if you haven't taken the prerequisite.
 
 --> what are the propositional atoms?
 
-
+p: You can enroll for the course
+q: You have taken the prerequisite
 
 
 --> translate to propositional logic:
 
-
+¬q → ¬p
 
 
 
@@ -78,16 +98,11 @@ You can't enroll for the course if you haven't taken the prerequisite.
 
 if you can enroll, you have taken the prereq
 
+p: You can enroll for the course
+q: You have taken the prerequisite
 
+p → q
 
-
-
-if you haven't taken the prereq, then you can't enroll
-
-
-
-
-Are these all equivalent?
 
 
 
@@ -103,10 +118,16 @@ if (x <= 2 || y >= 0) {
     }
 }
 
-(what are we promising about answer?)
+What are we promising about answer?
 
-if all those conditions are true, then answer will be 25
+if all conditions are met, then I promise that answer is 25
 
+p: x <= 2
+q: y >= 0
+r: z == 17
+s: answer == 25
+
+(p V q) ^ ¬r → s
 
 
 
@@ -120,6 +141,15 @@ if (x <= 2 || y >= 0) {
         answer = 25;
     }
 }
+
+p: x <= 2
+q: y >= 0
+r: z == 17
+s: answer == 25
+
+if answer isn't 25, something was false along the way
+
+¬s → ((¬p ^ ¬q) V r)
 
 
 
@@ -138,11 +168,11 @@ Consider these two statements:
 
 --> how could we translate them to propositional logic statements?
 
-p:
-q:
+p: I am at least 16 years old
+q: I can drive a car
 
-1)
-2)
+1) p → q
+2) ¬p V q
 
 
 --> are they saying the same thing?
@@ -150,7 +180,7 @@ q:
 
 
 
---> how could we PROVE they have the same logical meaning?
+--> could we PROVE it?
 (equiv.logika)
 
 
@@ -176,7 +206,7 @@ How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
 
-
+a != 4 && a != 5
 
 
 
@@ -189,16 +219,17 @@ if (a == 4 && b == 5) {
 How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
+a != 4 || b != 5
 
 
 
+//////////////////////////////
 
---> how can we express this in propositional logic?
---> (These are DeMorgan's laws?)
+DeMorgan's laws in propositional logic:
 
-¬(p ∨ q) is equivalent to...
+¬(p ∨ q) is equivalent to... ¬p ∧ ¬q
 
-¬(p ∧ q) is equivalent to...
+¬(p ∧ q) is equivalent to... ¬p ∨ ¬q
 
 
 --> how can we prove DeMorgan's laws?
@@ -218,6 +249,9 @@ if (Character.isDigit(letter) == true || num < 10) {
 --> how would we negate it without using a ! operator?
 
 
+if (Character.isDigit(letter) == false && num >= 10) {
+    statements
+}
 
 
 
@@ -229,14 +263,11 @@ if ((y >= 4 && num != 14) || x > 0) {
     statements
 }
 
-translate condition to propositional logic:
-
-
-
 negate it:
 
-
-resulting (negated) if-statement:
+if ((y < 4 || num == 14) && x <= 0)) {
+    statements
+}
 
 
 
@@ -244,6 +275,7 @@ resulting (negated) if-statement:
 ///////////////////////
 
 Other equivalences (≡ means "is equivalent to").
+(If we wanted, how could we prove them?)
 
 
 ¬(p ∧ q) ≡ ¬p ∨ ¬q      (DeMorgan's laws)
@@ -255,13 +287,15 @@ p ∨ F ≡ p
 
 
 p ∨ p ≡ p               (idempotent laws)
-
+p ∧ p ≡ p
 
 ¬(¬p) ≡ p               (double negation law)
 
 
 p ∨ q ≡ q ∨ p               (commutative laws)
 p ∧ q ≡ q ∧ p
+
+p ->q vs q -> p? NO! -> is not commutative
 
 
 (p ∨ q) ∨ r ≡ p ∨ (q ∨ r)         (associative laws)
@@ -280,14 +314,27 @@ p → q ≡ ¬p ∨ q          (can turn implies into an or)
 
 //////////////////////////
 
+What is equivalent to:
+
+¬p → q   p V q
+
+
+//////////////////////////
+
 are these equivalent?
 
     (p → q) → r
     p → (q → r)
 
 
+just need to find ONE truth assignment that makes one true
+and the other false.
 
+want to make the first statement false and second true
 
+p = F
+q = F
+r = F
 
 
 
@@ -297,20 +344,28 @@ In general, how to show statements are NOT equivalent?
 
 Satisfiability.
 
-- definition:
+- definition: a statement is satisfiable if there is at least
+one truth assignment that makes the statement true
 
 
 - what kind of statement is satisfiable? what kind is not?
 
+satisfiable: contingent, tautology
+not satisfiable: contradictory
 
 
 - is this satisfiable?
 
         (p ∨ ¬q) ∧ (q ∨ ¬r) ∧ (r ∨ ¬p)
 
+need to make each () clause true
 
+p = F
+q = F
+r = F
 
-
+SAT
+straightforward approach to checking all possibilities: 2^n combinations
 
 - Aside: P and NP problems
 
@@ -322,10 +377,9 @@ can we check a solution to a problem in polynomial time?
 
 
 
+////////////////////////
 
-
-
-
+<--------- stopped here, will do rest on Tuesday
 
 ////////////////////////
 

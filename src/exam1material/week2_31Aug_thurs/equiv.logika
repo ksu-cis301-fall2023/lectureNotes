@@ -3,3 +3,43 @@
 //1) p → q
 //2) ¬p ∨ q
 
+
+/*
+
+        *
+------------
+p q | p → q
+------------
+T T |   T
+T F |   F
+F T |   T
+F F |   T
+------------
+
+Contingent
+
+- T: [T T] [F T] [F F]
+- F: [T F]
+
+*/
+
+         *
+------------
+p q | ¬p ∨ q
+------------
+T T | F  T
+T F | F  F
+F T | T  T
+F F | T  T
+------------
+
+Contingent
+
+- T: [T T] [F T] [F F]
+- F: [T F]
+
+/*
+We know the statements are logically equivalent because the same
+set of truth assignments make them both true.
+
+*/
