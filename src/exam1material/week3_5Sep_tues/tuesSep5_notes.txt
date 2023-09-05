@@ -10,7 +10,7 @@ Exam 1 is Thursday, September 14
 
 Today:
 - Review: proving statements are not equivalent; satisfiability
-- Proof arguments with truth tables
+- Prove arguments with truth tables
 - Counterexamples to arguments
 - Natural deduction rules
 
@@ -60,6 +60,8 @@ Proving an argument.
     from our premises.
 
 
+--> What do we want to show?
+
 ///
 
 Proofs with truth tables.
@@ -70,8 +72,8 @@ Suppose we know:
 
     I am not in the ECE department.
 
-    If I am in the CS department,
-        then I can log in to the CS lab computers.
+    I can log in to the CS lab computers if
+        I am in the CS department.
 
 
 I want to prove:
