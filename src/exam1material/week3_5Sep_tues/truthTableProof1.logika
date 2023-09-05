@@ -3,7 +3,8 @@ Suppose we know:
 
     I am in the CS department or I am in the ECE department
     I am not in the ECE department.
-    If I am in the CS department, then I can log in to the CS lab computers.
+    If I can log in to the CS lab computers
+        then I am in the CS department.
 
 I want to prove:
     I can log in to the CS lab computers and I am in the CS department.
@@ -14,4 +15,89 @@ p ∨ q
 p → r
 
 Conclusion: r ∧ p
+*/
+
+/*
+          *
+---------------
+p q r | p ∨ q
+---------------
+T T T |   T
+T T F |   T
+T F T |   T
+T F F |   T
+F T T |   T
+F T F |   T
+F F T |   F
+F F F |   F
+---------------
+
+Contingent
+- T: [T T T] [T T F] [T F T] [T F F] [F T T] [F T F]
+- F: [F F T] [F F F]
+
+*/
+
+/*
+        *
+---------------
+p q r | ¬q
+---------------
+T T T | F
+T T F | F
+T F T | T
+T F F | T
+F T T | F
+F T F | F
+F F T | T
+F F F | T
+---------------
+
+Contingent
+
+- T: [T F T] [T F F] [F F T] [F F F]
+- F: [T T T] [T T F] [F T T] [F T F]
+*/
+
+/*
+          *
+---------------
+p q r | p → r
+---------------
+T T T |   T
+T T F |   F
+T F T |   T
+T F F |   F
+F T T |   T
+F T F |   T
+F F T |   T
+F F F |   T
+---------------
+
+Contingent
+- T: [T T T] [T F T] [F T T] [F T F] [F F T] [F F F]
+- F: [T T F] [T F F]
+*/
+
+          *
+---------------
+p q r | r ∧ p
+---------------
+T T T |   T
+T T F |   F
+T F T |   T
+T F F |   F
+F T T |   F
+F T F |   F
+F F T |   F
+F F F |   F
+---------------
+
+Contingent
+- T: [T T T] [T F T]
+- F: [T T F] [T F F] [F T T] [F T F] [F F T] [F F F]
+
+/*
+The only truth assignment that makes all the premises true is
+[T F T], which also makes the conclusion true. The argument holds.
 */

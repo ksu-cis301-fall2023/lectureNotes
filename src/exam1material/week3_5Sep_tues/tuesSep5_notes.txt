@@ -28,26 +28,30 @@ and
 How would we show they are NOT equivalent?
 
 
+p = T
+q = F
 
-
-
+makes first statement false and second statement true
 
 ////////////////////////////////////////
 
 Reminder: satisfiability
 
-Definition?
-
+Definition? at least one truth assignment makes the statement true
+    (contingent, tautology)
 
 
 
 Example: (p → ¬q) → r
 
-Is it satisfiable?
+Is it satisfiable? yes
+    p = F
+    q = F
+    r = T
 
 
-
-
+to show it's not satisfiable, need full truth table to show
+    it's contradictory
 
 
 ////////////////////////////////////////
@@ -81,18 +85,36 @@ I want to prove:
     I can log in to the CS lab computers
         and I am in the CS department.
 
-
-
 --> How would we translate to propositional logic?
 
+p: I am in the CS department
+q: I'm in the ECE department
+r: I can log in to the CS lab computers
 
+Translations:
 
+1) I am in the CS department or I am in the ECE department
+    p ∨ q
 
+2) I am not in the ECE department.
+    ¬q
+
+3) I can log in to the CS lab computers if
+           I am in the CS department.
+
+   p → r
+
+4) I can log in to the CS lab computers
+           and I am in the CS department.
+
+     r ∧ p
 
 
 --> How might we prove this with truth tables?
     (truthTableProof1.logika)
 
+We want to show that whenever ALL the premises are true,
+    then the conclusion is also true.
 
 ////////////////////////////
 (for easy copying)
@@ -120,6 +142,9 @@ We wish to prove:
 
 Showing arguments are invalid.
 
+An argument is invalid if there is at least one truth assignment
+    where all the premises are true but the conclusion is false.
+
 Example:
 
 Premises:
@@ -136,20 +161,25 @@ Proposed conclusion:
 
 1) Translate to propositional logic
 
+p: it is sunny
+q: I wear sunscreen
+
+Premises: p → q, q
+Conclusion: p
+
+p = F
+q = T
 
 
-
-2) Find a counter example
-
-
-
+This makes all premises true, but makes the conclusion false.
+The argument is invalid.
 
 ////////////////////////////
 
 Downside of proofs with truth tables?
 
 
-
+big painful messy
 
 
 
@@ -185,7 +215,7 @@ Want to prove a *sequent* of the form:
 where *premises* is a comma-separated list.
 
 
-
+|- (alternative to inserting ⊢)
 
 
 Same idea as truth tables -- want to prove that anytime the premises
@@ -205,7 +235,7 @@ AND rules idea.
 
    --> in what situations do you think we could do that?
 
-
+if I already had P, and already had Q
 
 
 
@@ -214,6 +244,7 @@ AND rules idea.
 
     --> what new claims would make sense using that statement?
 
+    P, Q
 
 
 
@@ -265,7 +296,7 @@ and also:
 
 What could we claim with  ∧i?
 
-
+(a ∨ ¬b) ^ (c -> d)
 
 
 
@@ -335,6 +366,8 @@ p ∧ q ∧ r ⊢ q
 ////////////////////////////////
 
 Example:
+
+(we skipped this)
 
 if (level >= 9 && age >= 14) {
     if (age <= 18 && level <= 12) {
