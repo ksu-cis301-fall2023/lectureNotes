@@ -1,0 +1,5 @@
+/*
+Example: prove one of the distributive laws
+
+p ∨ (q ∧ r)     is equivalent to       (p ∨ q) ∧ (p ∨ r)
+*/
