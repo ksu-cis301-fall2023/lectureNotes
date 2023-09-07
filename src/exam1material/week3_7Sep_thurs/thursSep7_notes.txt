@@ -4,11 +4,15 @@ HW 3 due Tuesday, September 12
 
     repo/tree/digital fingerprint
 
+    starting on HW 3, there will be a 5 pt deduction for
+    submissions in the wrong format
+
+
 Exam 1 is Thursday, September 14
     take full time
     closed notes
     similar to HW problems
-    will post practice problems
+    will post practice exam
 
 //////////////////////////////////////////
 
@@ -48,11 +52,13 @@ Natural deduction proof syntax.
         n. conclusion           justification
     }
 
-premises ⊢ conclusion --> this is a SEQUENT
+premises ⊢ conclusion --> what is this called? sequent
 
-claim: a propositional logic statement
-justificaton: the rule justifying the corresponding claim
-    (along with line numbers as needed to reference previous claims)
+
+claim: what is this?
+
+
+justificaton: what goes here?
 
 
 ///////////////////////////////////////////
@@ -69,6 +75,12 @@ premise
 Prove that ∧ is commutative:
 
 p ∧ q ⊢ q ∧ p
+{
+    1. p ∧ q                premise
+    2. p                    ∧e1 1
+    3. q                    ∧e2 1
+    4. q ∧ p                ∧i 3 2
+}
 
 
 
@@ -96,8 +108,20 @@ Syntax:
 Example:
 
 p ∧ q ⊢ p ∨ q
+{
+    1. p ∧ q            premise
+    2. q                ∧e2 1
+    3. p ∨ q            ∨i2 2
+}
 
+Or, could have done:
 
+p ∧ q ⊢ p ∨ q
+{
+    1. p ∧ q            premise
+    2. p                ∧e1 1
+    3. p ∨ q            ∨i1 2
+}
 
 
 ///////////////////////////////////////////
@@ -107,10 +131,16 @@ OR elimination
 
 Idea:
 - If an OR statement is true, what do we know?
-    --> at least one side is true
 
-- Reach same conclusion no matter which side of the OR is true
-- Then that conclusion holds overall
+at least one of the sides of the OR is true on its own
+
+
+
+- What if we can reach the same conclusion no matter which side
+    of the OR is true?
+
+
+
 
 
 Rule summary:
@@ -124,6 +154,11 @@ Rule summary:
 
 
 How does this relate to programming?
+
+
+
+
+
 
 if (condition) {
     some result
@@ -155,9 +190,21 @@ d. R                ∨e a b c
 
 ////////////////////////////////
 
-Example: prove that ∨ is commutative (or1.logika)
+Example: prove that OR is commutative (or1.logika)
 
 p ∨ q ⊢ q ∨ p
+{
+    1. p ∨ q                premise
+    2. {
+        3. p                assume
+        4. q ∨ p            ∨i2 3
+    }
+    5. {
+        6. q                assume
+        7. q ∨ p            ∨i1 6
+    }
+    8. q ∨ p                ∨e 1 2 5
+}
 
 
 
@@ -167,6 +214,12 @@ Do you think we could prove:
 
 p ∨ q ⊢ p ∧ q
 
+why is this invalid?
+
+truth assignment where premises are true but the conclusion is false
+
+p = T
+q = F
 
 
 --> what happens?
@@ -180,10 +233,15 @@ Proving equivalence.
     e.g., DeMorgan's laws:
     ¬(p ∨ q) is equivalent to ¬p ∧ ¬q
 
+we did a truth table for both and showed the same set of truth
+assignments made both true
 
 
 --> how do we do it with proofs?
 
+would have to do the proof in both directions
+first one as premise other as conclusion
+then the other way
 
 
 
@@ -204,6 +262,9 @@ p ∨ (q ∧ r)     is equivalent to       (p ∨ q) ∧ (p ∨ r)
 Equivalence in if-statements.
 
 
+NOTE: there was a mistake in this example during lecture.
+It has been corrected below.
+
 
 Consider this if-statement:
 
@@ -214,10 +275,21 @@ if (grade >= 80 || extraCredit == true) {
 }
 
 
+--> translate to propositional logic
+    (what does this look like?)
+
+p: grade >= 80
+q: extraCredit == true
+r: grade <= 90
+
+(p V q) ^ (r V q)
+
+equivalent to: q V (p ^ r)
+
+
 --> what is an equivalent, simpler if-statement?
 
-
---> how could we prove it?
+if (extraCredit == true || (grade >= 80 && grade <= 90))
 
 
 ///////////////////////////////////
@@ -239,11 +311,11 @@ English example:
 If it is hot, then I will go swimming.
 It is hot.
 
-Conclusion?
+Conclusion? we will go swimming
 
 
 --> how would this look in a truth table?
-    (what times would P and P → Q both be true?)
+    (what is always the case when P and P → Q are both true?)
 
 
 ///////////////////////////////////////
@@ -271,6 +343,10 @@ p → r,  q → r,  p ∨ q  ⊢ r
 
 //////////////////////////////////////
 
+(stopped here - will continue on Tuesday)
+
+/////////////////////////////////////
+
 Implies-introduction, →i
 
       {P assume
@@ -285,7 +361,7 @@ Idea: if Q is true whenever P is, then we can promise that
 This is the relationship P → Q.
 
 
---> how does this relate to proofs with truth tables?
+
 
 ////////////////////////////////////////
 

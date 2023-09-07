@@ -3,3 +3,64 @@ Example: prove one of the distributive laws
 
 p ∨ (q ∧ r)     is equivalent to       (p ∨ q) ∧ (p ∨ r)
 */
+
+//proof 1
+
+/*
+p ∨ (q ∧ r) |- (p ∨ q) ∧ (p ∨ r)
+{
+    1. p ∨ (q ∧ r)              premise
+    2. {
+        3. p                    assume
+        4. p ∨ q                ∨i1 3
+        5. p ∨ r                ∨i1 3
+        6. (p ∨ q) ∧ (p ∨ r)    ∧i 4 5
+        //need p ∨ q
+        //need p ∨ r
+        //goal: (p ∨ q) ∧ (p ∨ r)
+    }
+    7. {
+        8. q ∧ r                assume
+        9. q                    ∧e1 8
+        10. r                   ∧e2 8
+        11. p ∨ q               ∨i2 9
+        12. p ∨ r               ∨i2 10
+        13. (p ∨ q) ∧ (p ∨ r)   ∧i 11 12
+        //need p ∨ q
+        //need p ∨ r
+        //goal: (p ∨ q) ∧ (p ∨ r)
+    }
+    14. (p ∨ q) ∧ (p ∨ r)       ∨e 1 2 7
+}
+*/
+
+//proof 2
+
+(p ∨ q) ∧ (p ∨ r) |- p ∨ (q ∧ r)
+{
+    1. (p ∨ q) ∧ (p ∨ r)            premise
+    2. p ∨ q                        ∧e1 1
+    3. p ∨ r                        ∧e2 1
+    4. {
+        5. p                        assume
+        6. p ∨ (q ∧ r)              ∨i1 5
+        //goal: p ∨ (q ∧ r)
+    }
+    7. {
+        8. q                        assume
+        9. {
+            10. p                   assume
+            11. p ∨ (q ∧ r)         ∨i1 10
+            //goal: p ∨ (q ∧ r)
+        }
+        12. {
+            13. r                   assume
+            14. q ∧ r               ∧i 8 13
+            15. p ∨ (q ∧ r)         ∨i2 14
+            //goal: p ∨ (q ∧ r)
+        }
+        16. p ∨ (q ∧ r)             ∨e 3 9 12
+        //goal: p ∨ (q ∧ r)
+    }
+    17. p ∨ (q ∧ r)                 ∨e 2 4 7
+}

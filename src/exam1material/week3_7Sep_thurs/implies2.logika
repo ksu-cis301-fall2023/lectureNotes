@@ -1,1 +1,15 @@
 p → r,  q → r,  p ∨ q  ⊢ r
+{
+    1. p → r            premise
+    2. q → r            premise
+    3. p ∨ q            premise
+    4. {
+        5. p            assume
+        6. r            →e 1 5
+    }
+    7. {
+        8. q            assume
+        9. r            →e 2 8
+    }
+    10. r               ∨e 3 4 7
+}
