@@ -17,3 +17,178 @@ Exam 1 is Thursday, September 14
 ////////////////////////////////
 
 Today:
+
+- Correction of example from last week
+- Reminder: order of operations
+- Deduction rules with implies operator
+- Exam 1 review
+
+////////////////////////////////
+
+Consider this if-statement:
+
+if (grade >= 80 || extraCredit == true) {
+    if (grade <= 90 || extraCredit == true) {
+        //do stuff
+    }
+}
+
+
+--> translate to propositional logic
+    (what does this look like?)
+
+p: grade >= 80
+q: extraCredit == true
+r: grade <= 90
+
+(p V q) ^ (r V q)
+
+In class we said this was equivalent to:
+    p V (q ^ r)
+
+
+Which was NOT correct. What is the correct translation?
+
+
+
+--> what is an equivalent, simpler if-statement?
+
+
+
+///////////////////////////////
+
+Order of operations reminder.
+
+
+p ∧ q ∨ r is equivalent to... ?
+
+p, q, r ⊢ p ∧ q ∨ r
+{
+    1. p            premise
+    2. q            premise
+    3. r            premise
+
+    //what now?
+}
+
+///////////////////////////////
+
+Implies-elimination, →e
+
+      P, P → Q
+→e: -----------
+        Q
+
+
+Example:
+
+//Suppose we know x > 5. What can we conclude?
+
+if (x > 5) {
+    y = 17;
+}
+
+///////////////////////////////
+
+Syntax for using →e:
+
+a. P                (some justification)
+b. P → Q            (some justification)
+c. Q                →e b a
+
+
+
+////////////////////////////////////////
+
+Implies-introduction, →i
+
+      {P assume
+      ... Q}
+→i: -----------
+      P → Q
+
+
+Idea: if Q is true whenever P is, then we can promise that
+    if P is true, then Q is too.
+
+This is the relationship P → Q.
+
+
+--> how does this relate to proofs with truth tables?
+
+
+
+
+
+////////////////////////////////////////
+
+Syntax for using →i:
+
+a. {
+    b. P            assume
+    ...
+    c. Q            (some justification)
+}
+d. P → Q            →i a
+
+
+
+
+///////////////////////////////////////
+
+Example (implies3.logika):
+
+p → r,  q → r  ⊢  (p ∧ q) → r
+
+
+
+
+
+////////////////////////////////////////
+
+Example (implies4.logika):
+
+--> What if we wanted to conclude (p ∨ q) → r
+
+
+
+////////////////////////////////////////
+
+Exam 1 review.
+
+Covers everything we've done up to this point:
+
+- Basic logical reasoning (over English statements and if-statements)
+- Logic puzzles
+- Circuits
+- Truth tables
+- Parse trees
+- Proving two propositional logic statements are equivalent
+    (using truth tables and using natural deduction proofs)
+- Counterexamples to show propositional logic statements
+    are NOT equivalent
+- DeMorgan's laws on propositional logic (and their application)
+- Satisfiability
+- Translating between English and propositional logic
+- Arguments (premises and a proposed conclusion)
+- Determining whether an argument is valid or invalid
+    invalid when there is a truth assignment that makes ALL premises
+        true but makes the conclusion false
+    valid: have to either do a proof with truth tables
+        to show any time all premises are true then conclusion is true
+        OR have to prove the argument with natural deduction
+- Proving an argument with truth tables
+- Natural deduction proofs in propositional logic using the
+    AND, OR, and IMPLIES rules
+
+
+Closed notes/computers.
+
+All problems will be "open-ended" - similar in content/format
+to HW problems.
+
+Some problems will ask for a proof or explanation -- read carefully!
+
+////////////////////////////////////////
+
+See previous exam.
