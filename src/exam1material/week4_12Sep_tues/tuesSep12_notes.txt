@@ -1,4 +1,4 @@
-HW 3 due Tuesday, September 12
+HW 3 due tonight
 
     Reminder: correct submission format
 
@@ -9,10 +9,7 @@ HW 3 due Tuesday, September 12
 
 
 Exam 1 is Thursday, September 14
-    take full time
-    closed notes
-    similar to HW problems
-    will post practice exam
+    will review during second part of class
 
 ////////////////////////////////
 
@@ -25,6 +22,9 @@ Today:
 
 ////////////////////////////////
 
+Correction from example.
+
+
 Consider this if-statement:
 
 if (grade >= 80 || extraCredit == true) {
@@ -33,9 +33,6 @@ if (grade >= 80 || extraCredit == true) {
     }
 }
 
-
---> translate to propositional logic
-    (what does this look like?)
 
 p: grade >= 80
 q: extraCredit == true
@@ -48,10 +45,15 @@ In class we said this was equivalent to:
 
 
 Which was NOT correct. What is the correct translation?
+    q V (p ^ r)
 
 
 
 --> what is an equivalent, simpler if-statement?
+
+    if (extraCredit == true || (grade <= 90 && grade >= 80)) {
+
+    }
 
 
 
@@ -70,6 +72,15 @@ p, q, r ⊢ p ∧ q ∨ r
 
     //what now?
 }
+
+(p V q) V r |- ...
+{
+    1. premise
+    2. {
+        3. p V q               assume
+    }
+}
+
 
 ///////////////////////////////
 
@@ -164,20 +175,50 @@ Covers everything we've done up to this point:
 - Truth tables
 - Parse trees
 - Proving two propositional logic statements are equivalent
-    (using truth tables and using natural deduction proofs)
-- Counterexamples to show propositional logic statements
-    are NOT equivalent
+    how?
+    either truth tables (one for each, same set of truth assignments
+        make both true)
+    two natural deduction proofs (one as premise, one as conclusion
+        - both ways)
+
+- Prove propositional logic statements are NOT equivalent
+    how?
+
+    just need one truth assignment where the two statements
+    have different outputs
+
 - DeMorgan's laws on propositional logic (and their application)
-- Satisfiability
+    (like the HW)
+
+- Satisfiability: whether there is at least one truth assignment
+    that makes the statement true
+
+    how prove satisfiable?
+        just need one truth assignment that makes statement true
+
+    how prove not satisfiable?
+        need full truth table, show all truth assignments
+        make statement false (i.e., contradictory)
+
 - Translating between English and propositional logic
+
 - Arguments (premises and a proposed conclusion)
+
+
 - Determining whether an argument is valid or invalid
-    invalid when there is a truth assignment that makes ALL premises
-        true but makes the conclusion false
-    valid: have to either do a proof with truth tables
-        to show any time all premises are true then conclusion is true
-        OR have to prove the argument with natural deduction
+    how prove valid?
+        need to show that EVERY time the premises are all true
+        then the conclusion is also true
+
+    how prove invalid?
+        need to find ONE time that the premises are all true
+        but the conclusion is false
+
 - Proving an argument with truth tables
+    truth table for every premise and for the conclusion
+    find the set of truth assignments that made EVERY premise true
+        make sure that those truth assignments made the conclusion true
+
 - Natural deduction proofs in propositional logic using the
     AND, OR, and IMPLIES rules
 
