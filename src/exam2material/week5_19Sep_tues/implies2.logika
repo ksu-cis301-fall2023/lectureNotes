@@ -1,0 +1,1 @@
+p → r, r → a ∨ b, a → q, b → t ⊢ p → q ∨ t
