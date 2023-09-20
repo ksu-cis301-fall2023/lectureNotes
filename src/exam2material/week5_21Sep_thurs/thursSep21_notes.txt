@@ -1,0 +1,153 @@
+HW 4 posted, due Tues Sep 26
+
+links in the wrong format won't be accepted
+
+//////////////////
+
+Today:
+- more with not introduction and not elimination
+- remaining negation rules
+- natural deduction proof strategies
+
+//////////////////
+
+(negation2.logika)
+¬p ∧ ¬q ⊢ ¬(p ∨ q) (what is this? you'll prove the reverse on your HW)
+
+
+(negation3.logika)
+p → q ⊢ ¬q → ¬p (what is this?)
+
+/////////////////////////
+
+if (condition) {
+    statement
+}
+
+What do we know if "condition" is true?
+    statement
+
+What do we know if "statement" is NOT true?
+
+////////////////////
+
+Bottom-elimination:
+
+         ⊥
+⊥e:  ----------
+         R
+
+
+Proof by contradiction (reductio ad absurdum):
+
+       {¬P assume
+        ... ⊥}
+pbc:  ----------
+          P
+
+
+--> Difference between ¬i and pbc?
+
+///////////////////////////////////
+
+
+p ∨ q, ¬p ⊢ q
+
+
+
+¬¬p ⊢ p
+
+
+
+
+///////////////////////////////////
+
+In separate files:
+
+
+¬q → ¬p ⊢ p → q         //negation4.logika
+
+
+
+¬(¬p ∨ ¬q) ⊢ p ∧ q      //negation5.logika
+
+//////////////////
+
+A THEOREM in propositional logic is something that is
+always true with no need for premises. For example:
+
+
+Law of the excluded middle.
+
+p ∨ ¬p
+
+
+
+What would a theorem be in a truth table?
+
+
+Prove LEM:
+
+⊢ p ∨ ¬p                //lem.logika
+
+
+
+⊢ (theorem that you are trying to prove)
+
+//////////////////////////////////
+
+How do we approach proofs?
+
+1. Write out all the premises
+2. Extract all information from premises (∧e, →e)
+3. Look at what you are trying to prove (find its top level operator)
+
+    ∧ -
+
+    ∨ -
+
+    → -
+
+    ¬(something) -
+
+    just a propositional atom? see how to get that from premises
+        if that atom is the RHS of an implies, prove the LHS of the implies
+        to get it
+
+        q.
+        p->q
+
+        do the premises involve negation? Try pbc. Assume !(statement),
+        get contradiction.
+
+
+After each claim - see what we can extract that is new.
+
+Inside a subproof - ?
+
+
+Doesn't fit a pattern or doesn't work out from above:
+- Negation involved? Try pbc.
+- As a last resort, copy/paste LEM proof to have (something) ∨ ¬(something).
+    Use OR-elimination on it.
+
+/////////////////////////////////
+
+Putting it all together.
+
+
+(bigger1.logika)
+(c ∧ n) → t, h ∧ ¬s, h ∧ ¬(s ∨ c) → p ⊢ (n ∧ ¬t) → p
+
+
+(bigger2.logika)
+(p → q) → r, s → ¬p, t, (¬s ∧ t) → q ⊢ r
+
+
+/////////////////////////////////
+
+Next time:
+- soundness and completeness
+- begin sets
+
+
