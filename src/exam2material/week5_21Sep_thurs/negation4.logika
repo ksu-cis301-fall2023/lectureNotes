@@ -1,1 +1,43 @@
 ¬q → ¬p ⊢ p → q
+{
+    1. ¬q → ¬p          premise
+    2. {
+        3. p            assume
+        4. {
+            5. ¬q       assume
+            6. !p       ->e 1 5
+            7. _|_      !e 3 6
+            //want: _|_
+        }
+        8. q            pbc 4
+        //want: q
+    }
+    9. p -> q           ->i 2
+}
+
+//want to do the full  contrapositive equiv.
+//in one proof
+
+/*
+|- ((p -> q) -> (!q -> !p)) ^ ((!q -> !p) -> (p -> q) )
+{
+    1. {
+        2. p -> q           assume
+        3. {
+            4. !q           assume
+            5. {
+                6. p        assume
+                7. q        ->e 2 6
+                8. _|_       !e 7 4
+            }
+            9. !p           !i 5
+            //want: !p
+        }
+        10. !q -> !p         ->i 3
+        //want: !q -> !p
+    }
+    11. (p -> q) -> (!q -> !p) ->i 1
+
+    //I will leave this to you
+}
+*/

@@ -1,1 +1,24 @@
 ⊢ p ∨ ¬p
+{
+    1. {
+        //->i (no), Ve (no - don't have an OR yet), !i (no - not isn't top-level)
+        //only option: pbc
+        2. !(p ∨ ¬p)                assume
+        3. {
+            4. p                    assume
+            5. p ∨ ¬p               Vi1 4
+            6. _|_                  !e 5 2
+            //want: _|_
+        }
+        7. !p                       !i 3
+        //could conclude !p with !i
+
+        //if I had !p, could do Vi to get p V !p
+        8. p ∨ ¬p                   Vi2 7
+
+        //goal: _|_ (probably want p V !p to get it)
+        9. _|_                      !e 8 2
+    }
+    10. p ∨ ¬p                      pbc 1
+    //could conclude: p ∨ ¬p using pbc
+}

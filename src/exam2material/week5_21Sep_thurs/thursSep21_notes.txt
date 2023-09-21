@@ -2,12 +2,15 @@ HW 4 posted, due Tues Sep 26
 
 links in the wrong format won't be accepted
 
+Can pick up your exam 1 after class if you haven't yet
+
 //////////////////
 
 Today:
 - more with not introduction and not elimination
 - remaining negation rules
 - natural deduction proof strategies
+- proving equivalence with natural deduction
 
 //////////////////
 
@@ -20,14 +23,24 @@ p → q ⊢ ¬q → ¬p (what is this?)
 
 /////////////////////////
 
+Contrapositives with if-statements:
+
 if (condition) {
     statement
 }
 
 What do we know if "condition" is true?
-    statement
+
+statement
+
 
 What do we know if "statement" is NOT true?
+
+condition wasn't true
+
+
+
+
 
 ////////////////////
 
@@ -52,10 +65,35 @@ pbc:  ----------
 
 
 p ∨ q, ¬p ⊢ q
+{
+    1. p ∨ q            premise
+    2. ¬p               premise
+    3. {
+        4. p            assume
+        5. _|_          !e 4 2
+        6.  q           _|_e 5
+        //goal: q
+    }
+    7. {
+        8. q            assume
+    }
+    9. q                Ve 1 3 7
+}
 
 
 
 ¬¬p ⊢ p
+{
+    1. ¬¬p          premise
+    2. {
+        3. ¬p       assume
+        4. _|_      !e 3 1
+
+        //want: contradiction
+    }
+    5. p            pbc 2
+    //conclude: p
+}
 
 
 
@@ -69,7 +107,11 @@ In separate files:
 
 
 
+
 ¬(¬p ∨ ¬q) ⊢ p ∧ q      //negation5.logika
+
+
+
 
 //////////////////
 
@@ -77,13 +119,13 @@ A THEOREM in propositional logic is something that is
 always true with no need for premises. For example:
 
 
-Law of the excluded middle.
+Law of the excluded middle. (LEM)
 
 p ∨ ¬p
 
 
 
-What would a theorem be in a truth table?
+What would a theorem be in a truth table? a tautology
 
 
 Prove LEM:
@@ -102,34 +144,37 @@ How do we approach proofs?
 2. Extract all information from premises (∧e, →e)
 3. Look at what you are trying to prove (find its top level operator)
 
-    ∧ -
+    ∧ - separately prove each side, then use ^i
 
-    ∨ -
+    ∨ - see if you have another V as a premise, use Ve
+        if not, see if can use Vi on a claim you have
 
-    → -
+    → - implies subproof, subproof assume LHS, get to RHS
 
-    ¬(something) -
+    ¬(something) - subproof, assume something, get _|_, use !i
 
     just a propositional atom? see how to get that from premises
-        if that atom is the RHS of an implies, prove the LHS of the implies
-        to get it
+        if that atom appears in RHS of an implies?
+        p -> r, ... |- r
 
-        q.
-        p->q
 
-        do the premises involve negation? Try pbc. Assume !(statement),
-        get contradiction.
+        do the premises involve negation? use pbc
+        do you have an OR statement? use Ve
+
+
 
 
 After each claim - see what we can extract that is new.
 
-Inside a subproof - ?
+Inside a subproof - think about top-level op for your goal in that subproof
+
 
 
 Doesn't fit a pattern or doesn't work out from above:
-- Negation involved? Try pbc.
+- Negation involved? pbc, Ve
 - As a last resort, copy/paste LEM proof to have (something) ∨ ¬(something).
     Use OR-elimination on it.
+
 
 /////////////////////////////////
 
@@ -139,10 +184,17 @@ Putting it all together.
 (bigger1.logika)
 (c ∧ n) → t, h ∧ ¬s, h ∧ ¬(s ∨ c) → p ⊢ (n ∧ ¬t) → p
 
+//////////////////
+<--------- stopped here, will finish on Tues
+//////////////////
 
 (bigger2.logika)
 (p → q) → r, s → ¬p, t, (¬s ∧ t) → q ⊢ r
 
+
+/////////////////////////////////
+
+Proving equivalence
 
 /////////////////////////////////
 

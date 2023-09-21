@@ -1,1 +1,3 @@
 (p → q) → r, s → ¬p, t, (¬s ∧ t) → q ⊢ r
+
+//we'll do this next time
