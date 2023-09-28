@@ -10,31 +10,19 @@ Today:
 
 ///////////////////////////////////
 
-∀ ∃     ∈ ∉     ∅ ⋂ ⋃ ⊂ ⊆   ⋀ ⋁ ¬ →     ℕ ℤ     ≠ ≤ ≥
-
-///////////////////////////////////
-
-Quick review:
-
-A ⋃ B = {x : x ∈ A ⋁ x ∈ B}
-
-A ⋂ B = {x : x ∈ A ⋀ x ∈ B}
-
-A - B = {x : x ∈ A ⋀ x ∉ B}
-
-///////////////////////////////////
+Review:
 
 Quantifiers - helps describe all or some elements in a set
 
-    ∀ - universal quantifier, read as "for all"
+    ∀ - universal quantifier, "for all"
 
-    ∃ - existential quantifier, read as "there exists"
+    ∃ - existential quantifier, "there exists"
 
 
 
-∀ x ∈ A ...     "For all elements x in set A..."
+∀ x ∈ B ... For all elements x in set B....
 
-∃ x ∈ A ...     "There exists at least one x in set A..."
+∃ x ∈ B ... There exists an element x in set B...
 
 //////////////////////////////////////
 
@@ -53,6 +41,7 @@ A = {x : P(x)}
 
 How to prove a ∈ A, for some element a and some set A?
 
+Need to show P(a) is true
 
 
 //////////////////////////////////////
@@ -61,19 +50,26 @@ Example:
 
 A = {x : x ∈ ℕ ⋀ x^2 ≥ 25 }
 
+{5, 6, 7, ...}
 
-
+P(x) = x ∈ ℕ ⋀ x^2 ≥ 25
 
 Is 2 in A? Is -6? Is 10?
+
+P(2) = 2 ∈ ℕ ⋀ 2^2 ≥ 25  = false
+P(-6) = -6 ∈ ℕ ⋀ (-6)^2 ≥ 25 = false AND true = false
 
 //////////////////////////////////////
 
 How to prove A ⊆ B?
    ∀ k (k ∈ A → k ∈ B)
 
+    For all k, if k is in A, then k is also in B
 
 --> How would we prove an implies statement with natural deduction?
 
+
+Assume k is an element in A. Prove it is also in B.
 
 //////////////////////////////////////
 
@@ -84,11 +80,26 @@ Example:
 
 Prove A ⊆ B.
 
+A = {-4, 4, 8, } all multiples of 4
+B = {-2, 2, 4, 6, ...} all multiples of 2
 
 
+Let k be an element in A. Then k = 4n for some integer n.
+We have that k = 4n = 2(2n) = 2j where j is the integer 2n.
+Thus k is in set B, and so A ⊆ B
 
---> What if B = {x : x = 2n-6, n ∈ ℤ}?
+(We want: k = 2(something) where something is an integer.
 
+(we want to show that k is in B)
+
+A = {x : x = 4n, n ∈ ℤ}
+--> What if B = {x : x = 2n-6, n ∈ ℤ}? Is A ⊆ B?
+
+Let k be an element in A. Then k = 4n for some integer n. We have that
+k = 4n = 2(2n + 3) - 6 = 2j - 6 where j is the integer 2n + 3.
+Thus k is in set B, and so  A ⊆ B.
+
+(We want k = 2(something) - 6 )
 
 
 
@@ -96,23 +107,42 @@ Prove A ⊆ B.
 
 How would we show A = B?
 
-
+What if we want to show that {x : x = 2n, n ∈ ℤ} = {x : x = 2n-6, n ∈ ℤ}?
 
 //////////////////////////////////////
+
+Quick review:
+
+A ⋃ B = {x : x ∈ A ⋁ x ∈ B}
+
+A ⋂ B = {x : x ∈ A ⋀ x ∈ B}
+
+A - B = {x : x ∈ A ⋀ x ∉ B}
+
+///////////////////////////////////
 
 Sketch proof of a distributive law on sets:
 
 A ⋃ (B ⋂ C) = (A ⋃ B) ⋂ (A ⋃ C)
 
+We must show that A ⋃ (B ⋂ C) ⊆ (A ⋃ B) ⋂ (A ⋃ C) and that
+(A ⋃ B) ⋂ (A ⋃ C) ⊆ A ⋃ (B ⋂ C).
 
+Let k be an element in A ⋃ (B ⋂ C). Then (k ∈ A) ⋁ (k ∈ B ⋂ C).
+Assume k ∈ A. Then k ∈ A ⋁ k ∈ B and also k ∈ A ⋁ k ∈ C. Thus
+(k ∈ A ⋁ k ∈ B) ^ (k ∈ A ⋁ k ∈ C) and so k ∈ (A ⋃ B) ⋂ (A ⋃ C).
+Instead, assume k ∈ B ⋂ C.
 
 
 //////////////////////////////////////
 
 Limitations of propositional logic:
 
+Premises:
 All humans are mortal.
 Socrates is human.
+
+Conclusion
 Therefore, Socrates is mortal.
 
 
@@ -147,7 +177,7 @@ Predicates.
 A predicate is a boolean function that represents whether
     an individual has a particular property
 
-
+{x : P(x)}
 
 
 Example:
@@ -155,26 +185,27 @@ Example:
     Domain: ℤ
     P(x): whether x > 0
 
-    What is the value of P(1)?
+    What is the value of P(1)? true
+        1 > 0 evaluates to true
 
     What is the value of P(0)?
-
+        0 > 0 ? false. 0 is not strictly greater than itself.
 
 
 Example:
 
-    Domain: {x : x is a student at K-State}
+    Domain: {x : x is a student at K-State} (all students at K-State)
     C(x): whether x is in CIS 301
 
     Bob is taking: CIS 300, ECE 241, MATH 221, ENGL 200
     Jill is taking: CIS 301, MATH 510, HIST 251, MUSIC 170
 
 
-    What is the value of C(Bob)?
+    What is the value of C(Bob)? false
 
-    What is the value of C(Jill)?
+    What is the value of C(Jill)? true
 
-    What is the value of C(Bob) ⋀ C(Jill)?
+    What is the value of C(Bob) ⋀ C(Jill)? false
 
 
 ////////////////
@@ -191,10 +222,14 @@ Bite(x): f is bite-sized
 
 Write each statement in English. Is each one true or false?
 
-∀ x (Berry(x))
+∀ x (Berry(x)) All fruits are berries
 
     --> how could we express the same statement in our domain
     WITHOUT a quantifier?
+
+    Berry(strawberry) ^ Berry(blueberry) ^ Berry(banana) ^...
+
+    false, a banana is not a berry
 
 
 
@@ -205,58 +240,98 @@ Write each statement in English. Is each one true or false?
     --> how could we express the same statement in our domain
     WITHOUT a quantifier?
 
+(Citrus(strawberry) ^ Seeds(strawberry) V (Citrus(blueberry) ^ Seeds(blueberry)) V ...
 
 
+There is a fruit that is citrus and has seeds.
+
+True - both oranges and grapefruits
 
 
 ∀ x (Berry(x) ⋀ Bite(x))
 
+(Berry(strawberry) ^ bite(strawberry)) ^ .. ^ berry(orange) ^ bite(orange)
 
+All fruits are berries and are bite-sized. false - oranges aren't berries
 
 
 ∀ x (Berry(x) → Bite(x))
 
+For all fruits, if that fruit is a berry, then it is also bite-sized.
+All berries are bite-sized.
 
+True (assuming our strawberries are a reasonable size)
 
 
 ¬(∀ x Peel(x))
 
 Can you think of another way to write the same thing?
+    equivalent to: ∃ x ¬Peel(x)
 
+Not all fruits have a peel.
+
+True - blueberries don't really have a peel to speak of
 
 
 ¬(∀ x (Seeds(x) → Citrus(x)))
+
+Not all fruits with seeds are citrus.
+
+True - an apple is a fruit with seeds that is not citrus
+
+∃ x (Seeds(x) ^ ¬Citrus(x))
 
 Can you think of another way to write the same thing?
 
 
 ∀ x ¬Peel(x)
 
+All fruits do not have a peel
 
+(there does not exist a fruit with a peel)
+¬(∃ x Peel(x))
+
+false - a banana has a peel
 
 
 ¬(∃ x Berry(x))
+There does not exist a berry
+false - strawberry is a berry
+equivalent to: ∀ x ¬Berry(x) (all fruits are not berries)
 
 
+¬(∃ x (Peel(x) ⋀ Citrus(x)))
 
-¬(∃ x Peel(x) ⋀ Citrus(x))
-
-
-
-∃ x ¬(Peel(x) ⋀ Citrus(x))
+there does not exist a fruit with a peel and that is citrus
+false - orange has peels and is citrus
 
 
+∃ x ¬(Peel(x) ⋀ Seeds(x))
 
-¬(∀ x Berry(x))
-
-
+There is a fruit that's not both with peel and seeds
+¬(Peel(blueberry) ⋀ Seeds(blueberry)) V !()
+true - strawberry
 
 
 ∃ x (Citrus(x) → Berry(x))
 
+There is exists a fruit and if that fruit is citrus then it a berry
+
+remember -> is true when LHS is false. If we have a fruit where the
+LHS is false (where citrus is false), then the implies is vacuously true.
+
+TRUE - strawberry is not citrus
+
+/////////////////
+
+For all: usually connect with ->
+
+There exists: usually connect with ^
 
 
+/////////////////
 
+Stopped here - will continue on Tuesday, October 3
 
 /////////////////
 
@@ -338,6 +413,10 @@ Want to specify that every element in nums has been updated
     (use "nums_in" to denote the original array, and "nums"
     to mean the final array)
 
+
+//////////////////////////////
+
+∀ ∃     ∈ ∉     ∅ ⋂ ⋃ ⊂ ⊆   ⋀ ⋁ ¬ →     ℕ ℤ     ≠ ≤ ≥
 
 //////////////////////////////
 
