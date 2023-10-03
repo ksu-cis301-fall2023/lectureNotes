@@ -10,6 +10,7 @@ Exam 2 will be Thurs Oct 12
 Today:
 - more with predicates and translations
 - DeMorgan's laws for quantifiers
+- Introduction to rules for quantifiers in natural deduction
 
 ////////////////////////////////////
 
@@ -19,40 +20,19 @@ Today:
 
    Reminder (maybe our domain is people):
 
-        ∃ x student(x)
+        ∃ x student(x) - there is a student
 
-        ¬(∃ x student(x))
+        ¬(∃ x student(x)) - there does not exist a student
 
-        ∃ x ¬student(x)
+        ∃ x ¬student(x) - there is someone who is not a student
 
-        ∀ x student(x)
+        ∀ x student(x) - everyone is a student
 
-        ¬(∀ x student(x))
+        ¬(∀ x student(x)) - not everyone is a student
 
-        ∀ x ¬student(x)
+        ∀ x ¬student(x) - everyone is not a student
 
 ////////////////////////////////////
-
-Predicates in math.
-
-Can use boolean functions to represent properties in math, like this:
-
-Domain: ℕ
-Big(x): whether x > 100
-
-∃ x Big(x)
-
-
-
-But more commonly list the property itself, like this:
-
-    ∃ x (x > 100)
-
-Or, sometimes also list the domain in the statement:
-
-    ∃ x ∈ ℕ : (x > 100)
-
-///////////////////////////////
 
 Domain: ℤ
 
@@ -60,13 +40,13 @@ Domain: ℤ
 What do these mean in English? Are they true?
 
 
-∀ n ∃ m (n^2 < m)
-
+∀ n ∃ m (n^2 < m) - the square of every integer is less than some other integer
+    true
 
 
 ∀ x ∃ y (x == y^2)
-
-
+    every integer is the square of some other integer
+    no - not every integer is a perfect square
 
 --> does the domain matter?
 
@@ -79,11 +59,17 @@ The sum of two negative integers is negative
 
 Domain: ℤ
 
-
+∀ x ∀ y (x < 0 ^ y < 0 -> x+y < 0)
+true
 
 
 The difference of two positive integers is not necessarily positive
 
+(I can find a pair of positive integers whose difference is not positive)
+
+∃ x ∃ y (x > 0 ^ y > 0 ^ x-y <= 0)
+
+true. 2-4 = -2
 
 /////////////////////////////
 
@@ -91,21 +77,16 @@ Writing specifications using predicate logic
 
 Domain: {x : x is a user input number}
 
-
-
-
 Want to specify: individual "min" is the minimum user input element
 
+(∀ x (min <= x)) ^ (∃ x (x == min))
 
 
 Want to specify that the array nums is sorted
 
+each number is <= the number after it
 
-Want to specify that every element in nums has been updated
-    to be the absolute value of the original element
-
-    (use "nums_in" to denote the original array, and "nums"
-    to mean the final array)
+∀ x: (0..<nums.length-1) nums[i] <= nums[i+1]
 
 
 //////////////////////////////
@@ -116,15 +97,16 @@ Equivalence: DeMorgan's law (part 1).
 
 How might we read these two statements?
 
-
+there does not exist an x where P is true
+for all x, P is not true
 
 We will prove this soon...but what is the idea?
 
 suppose our domain is k1 through kn
 
 
-¬(∃ x P(x)) is  equivalent to...?
-∀ x (¬P(x)) is equivalent to...?
+¬(∃ x P(x)) is  equivalent to...? ¬(P(k1) V P(k2) V .. V P(kn))
+∀ x (¬P(x)) is equivalent to...? ¬P(k1) ^ ¬P(k2) ^ ... ^ ¬P(kn)
 
 
 
@@ -135,11 +117,13 @@ Equivalence: DeMorgan's law (part 2).
 ¬(∀ x P(x))       ∃ x (¬P(x))
 
 How might we read these two statements?
+not all elements are P-ish
+there is an element that is not P-ish
 
 ¬(∀ x P(x)) is equivalent to...?
 ∃ x (¬P(x)) is equivalent to...?
 
-What is the idea of this proof?
+What is the idea of this proof? same idea, but other DeMorgan's law
 
 //////////////////////////////////////
 
@@ -165,37 +149,51 @@ or outside a statement with logical connectives
         ¬(p → q) is equivalent to: ¬(¬p ⋁ q) = p ^ ¬q
 
 ///
-
+Domain: students
     in5th(x): student x is in 5th grade
     wonPrize(x): student x won a prize
     friendsWith(x, y): student x is friends with student y
-        (not necessarily reciprocal)
 
 A 5th grader won a prize
 
 Translation:
-
+    ∃ x (in5th(x) ^ wonPrize(x))
 
 Negation:
+¬(∃ x (in5th(x) ^ wonPrize(x)))
+∀ x ¬(in5th(x) ^ wonPrize(x))
+∀ x (¬in5th(x) V ¬wonPrize(x))
+∀ x (in5th(x) -> ¬wonPrize(x))
 
+All 5th graders did not win a prize
 
-
+p → q is equivalent to: ¬p ⋁ q
 
 ///
 
 All prize-winners were 5th graders
 
-Translation:
+Translation: ∀ x (wonPrize(x) -> in5th(x))
 
-Negation: try on your own
+Negation:
 
+
+¬(∀ x (wonPrize(x) -> in5th(x)))
+∃ x ¬(wonPrize(x) -> in5th(x))
+∃ x ¬(¬wonPrize(x) V in5th(x))
+∃ x (wonPrize(x) ^ ¬in5th(x))
+
+There is a student who won a prize and is not a 5th grader
+
+p → q is equivalent to: ¬p ⋁ q
 
 ///
 
 All 5th graders have a friend
 
-Translation:
+(skipped - try on your own)
 
+Translation:
 Negation:
 
 
@@ -203,10 +201,10 @@ Negation:
 
 All 5th graders are friends with each other
 
+(skipped - try on your own)
+
 Translation:
-
-
-Negation: try on your own
+Negation:
 
 
 ///
@@ -214,11 +212,22 @@ Negation: try on your own
 A 5th grader is friends with all prize winners
 
 Translation:
+∃ x ∀ y (in5th(x) ^ wonPrize(y) -> friendsWith(x, y))
 
 
 Negation:
+¬(∃ x ∀ y (in5th(x) ^ wonPrize(y) -> friendsWith(x, y)))
+∀ x ∃ y ¬(in5th(x) ^ wonPrize(y) -> friendsWith(x, y))
+∀ x ∃ y ¬(¬(in5th(x) ^ wonPrize(y)) V friendsWith(x, y))
+∀ x ∃ y ¬((¬in5th(x) V ¬wonPrize(y)) V friendsWith(x, y))
+∀ x ∃ y (¬(¬in5th(x) V ¬wonPrize(y)) ^ ¬friendsWith(x, y))
+∀ x ∃ y (in5th(x) ^ wonPrize(y) ^ ¬friendsWith(x, y))
 
+All 5th graders have a prize-winner that they are not friends with
 
+(I will check this - edit: it looks OK)
+
+p → q is equivalent to: ¬p ⋁ q
 
 ////////////////////////////////////
 
@@ -243,7 +252,7 @@ Examples -- are the following arguments valid?
 Premises: ∀ x (P(x) → Q(x)), ∃ x P(x)
 Conclusion: ∃ x Q(x)
 
-Valid or not?
+Valid or not? true
 
 
 ///
@@ -251,14 +260,8 @@ Valid or not?
 Premises: ∀ x P(x)
 Conclusion: ∃ x P(x)
 
-Valid or not?
+Valid or not? NO! Does not hold when the domain is empty.
 
-///
-
-Premises: ∀ x (¬P(x) ⋁ ¬D(x)), D(a)
-Conclusion: ¬P(a)
-
-Valid or not?
 
 /////////////////////////////////
 
