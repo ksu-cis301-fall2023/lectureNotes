@@ -1,0 +1,12 @@
+/*
+P(x): x is pizza
+Q(x): x has pepperoni
+K(x): x has mushrooms
+
+Given the premises:
+All pizza has pepperoni or mushrooms
+All food is pizza
+
+We want to prove:
+All food has pepperoni or mushrooms
+*/
