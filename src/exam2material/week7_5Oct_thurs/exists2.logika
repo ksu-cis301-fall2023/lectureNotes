@@ -1,1 +1,16 @@
 ∀ x (Human(x) → Mortal(x)), ∃ x (Human(x)) ⊢ ∃ x (Mortal(x))
+{
+    1. ∀ x (Human(x) → Mortal(x))           premise
+    2. ∃ x (Human(x))                       premise
+
+    //can't use Ae yet because I don't have an individual
+    3. {
+        4. bob Human(bob)                   assume
+        5. Human(bob) -> Mortal(bob)        Ae 1 bob
+        6. Mortal(bob)                      ->e 5 4
+        7. ∃ x (Mortal(x))                  Ei 6 bob
+        //want: ∃ x (Mortal(x))
+    }
+    8. ∃ x (Mortal(x))                      Ee 2 3
+    //want: ∃ x (Mortal(x))
+}
