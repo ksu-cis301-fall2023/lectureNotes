@@ -1,0 +1,64 @@
+HW 6 due tonight
+    - check your link format
+    - solutions will be visible just after midnight
+        early Thurs. morning
+
+Exam 2 is Thursday, October 12
+    - will review today
+
+No new HW this week
+
+///////////////////////////////////////
+
+Today:
+- Finish proofs of DeMorgan's laws
+- Exam review
+
+///////////////////////////////////////
+
+Finish both directions of DeMorgan's first law
+
+∀ x ¬P(x)       equivalent to       ¬(∃ x P(x))
+
+(demorgan1.logika)
+
+///////////////////////////////////////
+
+Prove DeMorgan's second law
+
+∃ x ¬P(x)       equivalent to       ¬(∀ x P(x))
+
+(demorgan2.logika)
+
+////////////////////////////////////////
+
+Exam 2:
+- Thursday, October 12 9:30-10:45 DUE 1109
+- Closed notes, closed computers
+- All "open-ended" problems - similar to HW 4-6
+
+- Natural deduction proofs in propositional logic, esp. with negation rules
+    - not elimination, not introduction, bottom elimination, and pbc
+    - still expected to be familiar with all other rules
+
+Sets, including:
+    - set builder notation
+    - union, intersection, difference, subsets
+    - general reasoning about sets
+
+Predicate logic statements, including:
+    - quantifiers
+    - interpreting predicate logic statements in English
+    - translating English statements to predicate logic
+    - evaluating predicate logic statements in a domain
+    - working with predicate logic statements involving sets of numbers
+    - DeMorgan's laws
+    - negating predicate logic statements
+
+- Natural deduction proofs in predicate logic (deduction rules with quantifiers)
+
+- Using natural deduction to prove two statements are equivalent
+
+///////////////////////////////////////
+
+Work through practice exam (will post solution after class)
