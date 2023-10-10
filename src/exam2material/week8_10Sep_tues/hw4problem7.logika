@@ -1,0 +1,31 @@
+//HW 4, problem 7
+
+//prove these statements are equivalent:
+
+// ¬(p → q)       and     p ∧ ¬q
+
+¬(p → q) |- p ∧ ¬q
+{
+    1. ¬(p → q)             premise
+    2. {
+        3. ¬(p ∧ ¬q)        assume
+        4. {
+            5. p            assume
+            6. {
+                7. ¬q       assume
+                8. p ∧ ¬q   ^i 5 7
+                9. _|_      !e 8 3
+                //want: _|_
+            }
+            10. q           pbc 6
+            //use pbc to get what I want: q
+        }
+        11. p->q            ->i 4
+        12. _|_             !e 11 1
+        //goal: p->q
+        //want: _|_
+    }
+    13. p ∧ ¬q              pbc 2
+    //use pbc to conclude p ∧ ¬q
+}
+

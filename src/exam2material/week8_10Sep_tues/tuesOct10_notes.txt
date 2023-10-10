@@ -12,6 +12,7 @@ No new HW this week
 
 Today:
 - Finish proofs of DeMorgan's laws
+- HW 4, problem 7
 - Exam review
 
 ///////////////////////////////////////
@@ -43,6 +44,7 @@ Exam 2:
 
 Sets, including:
     - set builder notation
+    - N (natural, all positive), Z (integers), R (reals)
     - union, intersection, difference, subsets
     - general reasoning about sets
 
@@ -57,7 +59,7 @@ Predicate logic statements, including:
 
 - Natural deduction proofs in predicate logic (deduction rules with quantifiers)
 
-- Using natural deduction to prove two statements are equivalent
+T- Using natural deduction to prove two statements are equivalent
 
 ///////////////////////////////////////
 
