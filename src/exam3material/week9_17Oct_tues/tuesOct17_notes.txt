@@ -1,0 +1,253 @@
+Exam 2 discussion.
+
+High: 100/100
+Average: 79/100
+
+A (90-100): 39 students! (I've never had that many A's on an exam)
+B (80-89): 13 students
+C (70-79): 9 students
+D/F (69 and below): 22 students
+
+Briefly discuss exam.
+
+Exam grades in Canvas
+- drops lowest among Exam 1, Exam 2, Exam 3,
+    *midterm equivalent from final*
+
+- what does this mean with the final exam?
+
+////////////////////////////////////////////////////
+
+HW 7 will be posted after class, due Tues Oct 24
+
+////////////////////////////////////////////////////
+
+Today:
+
+- predicate logic proofs with nested quantifiers
+- soundness and completeness in predicate logic
+- begin mathematical induction
+
+/////////////////////////////////
+
+Proofs with nested quantifiers.
+
+- approach exactly the same as proofs with single quantifiers
+...but, can only plug in for / introduce a single quantifier at once
+
+
+Examples:
+
+//nested1.logika
+∀ x (∀ y P(x, y)) ⊢ ∀ y (∀ x P(x, y))
+
+//nested2.logika
+∃ x (∃ y P(x, y)) ⊢ ∃ y (∃ x P(x, y))
+
+//nested3.logika
+∀ x (∀ y (C(x) → D(y))), ∃ x C(x) ⊢ ∀ y D(y)
+
+//nested4.logika
+∃ y (∀ x P(x, y)) ⊢ ∀ x (∃ y P(x, y))
+
+    --> can we prove the opposite?
+
+//////////////////////////////
+
+Soundness and completeness of predicate logic.
+
+
+Soundness: definition?
+
+    propositional:
+
+    predicate logic:
+
+
+
+
+Completeness: definition?
+
+    propositional:
+
+    predicate logic:
+
+
+
+///////////////////////////////////
+
+Same argument might be VALID in one domain and INVALID in another
+
+- deduction can only prove arguments that are valid in ANY domain
+- we can't prove all valid arguments
+
+
+Domain with integers with operations like +
+
+
+All integers? 2 + 3 = ?
+
+
+Subset (0,1,2,3,4) of integers. 2 + 3 = ?
+
+
+
+////////////////////////////////////
+
+
+Godel's Incompleteness Theorem.
+
+Any consistent formal system where integer arithmetic is
+carried out is incomplete -- there will be true statements
+that cannot be proved.
+
+(depends on interpretations)
+
+
+//////////////////////////////////
+
+Mathematical induction.
+
+Tool for proving something involving natural numbers
+
+Base case: prove the statement is true for the first element in
+    our domain.
+
+Inductive step: Assume the statement is true for some n in our domain.
+    Given that, prove the statement is true for n+1.
+
+--> how will this prove the statement for our entire domain?
+
+
+**we will do something similar when proving the correctness of loops*
+
+
+
+/////////////////////////////////
+
+Example:
+
+Let P(n) be the claim that for any positive integer n:
+
+    1 + 2 + ... + n = n*(n+1)/2
+
+
+LHS(n) = ?
+RHS(n) = ?
+
+
+So to show P(n) holds, we can show that... ?
+
+
+
+Try it out first.
+
+n = 1?
+
+LHS(1): ?
+RHS(1): ?
+
+
+
+n = 2?
+
+LHS(2): ?
+RHS(2): ?
+
+
+
+n = 3?
+
+LHS(3):
+RHS(3):
+
+
+
+Proof by induction.
+
+
+Base case:
+
+Inductive step:
+
+
+
+
+
+/////////////////////////////////
+
+Do you think induction can be used to prove properties for ALL integers?
+
+
+
+
+/////////////////////////////////
+
+Example: Prove that the sum of the first n odd numbers is n^2.
+
+
+Let P(n) be the claim that 1 + 3 + 5 + ... + (2n−1) = n^2.
+
+LHS(n)
+RHS(n)
+
+How can we show that P(n) holds for some positive integer n?
+
+
+
+
+
+Try it out first.
+
+n = 1?
+n = 2?
+n = 3?
+
+
+
+Proof by induction.
+
+Base case:
+
+
+
+Inductive step. Assume ... We must show that ...
+
+
+
+
+/////////////////////////////////
+
+Example: 3^n - 1 is even.
+
+Let P(n) be the claim that 3^n - 1 is even for all natural numbers n.
+
+
+
+
+Try it out first.
+
+n = 1?
+
+n = 2?
+
+n = 3?
+
+
+
+
+
+Proof by induction.
+
+Base case:
+
+Inductive step. Assume ... We must show that ...
+
+
+
+/////////////////////////////////
+
+Next time:
+- more with mathematical induction
+- begin a survey of proof techniques (direct proof, conditional proof,
+    contrapositive proof, proof by contradiction)
