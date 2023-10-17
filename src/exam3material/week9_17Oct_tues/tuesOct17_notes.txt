@@ -50,9 +50,14 @@ Examples:
 //nested4.logika
 ∃ y (∀ x P(x, y)) ⊢ ∀ x (∃ y P(x, y))
 
-    --> can we prove the opposite?
+    --> can we prove the opposite? (NO)
 
 //////////////////////////////
+
+STOPPED HERE - will finish on Thursday
+
+//////////////////////////////
+
 
 Soundness and completeness of predicate logic.
 

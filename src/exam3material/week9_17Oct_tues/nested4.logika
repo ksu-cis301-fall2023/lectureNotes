@@ -1,1 +1,17 @@
 ∃ y (∀ x P(x, y)) ⊢ ∀ x (∃ y P(x, y))
+{
+    1. ∃ y (∀ x P(x, y))            premise
+    2. {
+        3. a
+        4. {
+            5. b ∀ x P(x, b)        assume
+            6. P(a, b)              Ae 5 a
+            7. ∃ y P(a, y)          Ei 6 b
+            //want: ∃ y P(a, y)
+        }
+        8. ∃ y P(a, y)              Ee 1 4
+        //∃ y P(a, y)
+    }
+    9. ∀ x (∃ y P(x, y))            Ai 2
+    //conclude ∀ x (∃ y P(x, y))
+}
