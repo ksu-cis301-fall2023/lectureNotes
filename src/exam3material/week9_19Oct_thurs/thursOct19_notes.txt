@@ -1,5 +1,7 @@
 HW 7 due Tues Oct 24
 
+--> look at #3 in HW
+
 ////////////////////////
 
 Today:
@@ -7,26 +9,31 @@ Today:
 - finish predicate logic
 - mathematical induction
 
+--> new practice quiz in Canvas on mathematical induction
+
 ////////////////////////
 
 
 Soundness and completeness of predicate logic.
 
 
-Soundness: definition?
+Soundness: everything that I can prove (with natural deduction)
+is actually true
 
-    propositional:
+    propositional logic? yes
 
-    predicate logic:
+    predicate logic? yes (we can only prove things that are true
+    in every domain)
 
 
 
 
-Completeness: definition?
+Completeness: can we prove everything that is true?
 
-    propositional:
+    propositional logic? yes (anything we can prove is a valid argument
+    with truth tables we can also prove with natural deduction)
 
-    predicate logic:
+    predicate logic? no
 
 
 
@@ -41,10 +48,10 @@ Same argument might be VALID in one domain and INVALID in another
 Domain with integers with operations like +
 
 
-All integers? 2 + 3 = ?
+All integers? 2 + 3 = 5
 
 
-Subset (0,1,2,3,4) of integers. 2 + 3 = ?
+Subset (0,1,2,3,4) of integers. 2 + 3 = 0
 
 
 
@@ -74,6 +81,10 @@ Inductive step: Assume the statement is true for some n in our domain.
 
 --> how will this prove the statement for our entire domain?
 
+base case: n = 1
+n = 2
+n 3
+
 
 **we will do something similar when proving the correctness of loops*
 
@@ -88,11 +99,11 @@ Let P(n) be the claim that for any positive integer n:
     1 + 2 + ... + n = n*(n+1)/2
 
 
-LHS(n) = ?
-RHS(n) = ?
+LHS(n) = 1 + 2 + ... + n
+RHS(n) = n*(n+1)/2
 
 
-So to show P(n) holds, we can show that... ?
+So to show P(n) holds, we can show that LHS(n) = RHS(n)
 
 
 
@@ -122,19 +133,37 @@ RHS(3):
 Proof by induction.
 
 
-Base case:
+Base case: We must show that P(n) holds for the smallest positive integer n,
+that is, we must prove that P(1) holds.
 
-Inductive step:
+We have that: LHS(1) = 1 and RHS(1) = 1(1+1)/2 = 1. LHS(1) = RHS(1), so
+P(1) holds.
+
+Inductive step: We assume the inductive hypothesis -- that is, that
+P(n) holds for some positive integer n. In other words, we are assuming
+that LHS(n) = RHS(n).
+We must show that P(n+1) also holds.
+
+To show P(n+1), we must show that LHS(n+1) = RHS(n+1). We have that:
+
+LHS(n+1) = 1 + 2 + ... + n + (n+1)
+        = LHS(n) + (n+1)
+        = RHS(n) + (n+1)
+        = n(n+1)/2 + (n+1)
+        = (n(n+1) + 2(n+1))/2
+        = (n+1)(n+2)/2
+        = RHS(n+1)
+
+Thus LHS(n+1) = RHS(n+1), so P(n+1) holds.
 
 
-
-
+--> why do we know the property is true for n=5? n=10?
 
 /////////////////////////////////
 
 Do you think induction can be used to prove properties for ALL integers?
 
-
+no, there must be a smallest value to have a base case
 
 
 /////////////////////////////////
@@ -144,33 +173,37 @@ Example: Prove that the sum of the first n odd numbers is n^2.
 
 Let P(n) be the claim that 1 + 3 + 5 + ... + (2n−1) = n^2.
 
-LHS(n)
-RHS(n)
-
-How can we show that P(n) holds for some positive integer n?
-
-
-
-
-
 Try it out first.
 
-n = 1?
-n = 2?
-n = 3?
+n = 1? 1 = 1^2
+n = 2? 1 + 3 = 2^2
+n = 3? 1 + 3 + 5 = 3^2
 
 
 
 Proof by induction.
 
-Base case:
+Base case: We must prove that P(n) holds for the smallest value n, which
+is n = 1. We have that:
+
+1 = 1^2
+
+and so the property holds.
 
 
 
-Inductive step. Assume ... We must show that ...
+Inductive step. Assume the claim holds for some positive integer n, that is,
+    1 + 3 + 5 + ... + (2n-1) = n^2
 
+We must show that:
+    1 + 3 + 5 + ... + (2n-1) + (2(n+1)-1) = (n+1)^2
 
+We have that:
+    1 + 3 + 5 + ... + (2n-1) + (2(n+1)-1) = n^2 + (2(n+1)-1)
+                            = n^2 + 2n + 1
+                            = (n+1)^2
 
+So the inductive step holds.
 
 /////////////////////////////////
 
@@ -180,27 +213,57 @@ Let P(n) be the claim that 3^n - 1 is even for all natural numbers n.
 
 
 
-
-Try it out first.
-
-n = 1?
-
-n = 2?
-
-n = 3?
+n = 3? 3^3 - 1 = 26
+even? divisible by 2
+add two even numbers? always even
 
 
+Base case. We must show that the property holds for the smallest n,
+which is n = 1. We have that 3^1 - 1 = 2, which is even. The base case holds.
+
+Inductive step. We assume the inductive hypothesis - that 3^n - 1 is even
+for some natural number n. We must show that 3^(n+1) - 1 is even.
+
+We have that:
+    3^(n+1) - 1 = 3*(3^n) - 1
+               = 3*(3^n - 1) + 3 - 1
+               = 3*(3^n - 1) + 2
+
+3^n - 1 is even by our deductive hypothesis, and any even number times another
+integer is also even. Thus 3*(3^n - 1) is also even. An even number plus
+another even number is even, and so 3*(3^n - 1) + 2 is even. Thus
+3^(n+1) - 1 is even, and so our inductive step holds.
 
 
+//////////////////////////////////
 
-Proof by induction.
+Example: use induction to prove that for any integer n >= 4:
 
-Base case:
+    n! > 2^n
 
-Inductive step. Assume ... We must show that ...
+4! = 4*3*2*1 = 24
+
+n = 4?
+
+2^4 = 16
+
+
+Base case. We must prove that n! > 2^n for the smallest n in our domain,
+that is, when n = 4. We have 4! = 24 and 2^4 = 16, so 4! > 2^4.
+
+Inductive step. We assume the inductive hypothesis - that n! > 2^n
+for some n >= 4. We must show that: (n+1)! > 2^(n+1), or that:
+    (n+1)n! > 2*(2^n)
+
+From our inductive hypothesis, n! > 2^n. Furthermore, n+1 > 2 because
+n >= 4. So both factors in (n+1)n! are bigger than the corresponding
+ factors in 2*(2^n), and so (n+1)n! > 2*(2^n). The inductive step holds.
+
 
 
 /////////////////////////////////
+
+(We will cover this template next Tuesday)
 
 Template for mathematical induction:
 
@@ -212,8 +275,8 @@ If the claim is an equality, write out LHS(n) and RHS(n) for P(n).
 
 
 
-2) Write "Base case". Show that P(k) is true for the smallest value of k.
-    Write "The base case holds".
+2) Write "Base case". Show that P(k) is true for the smallest value of k
+    in the domain. Write, "The base case holds."
 
 
 3) Write "Inductive step". State the inductive hypothesis:
@@ -223,7 +286,7 @@ If the claim is an equality, write out LHS(n) and RHS(n) for P(n).
 
     Use the information from P(n) to prove P(n+1).
 
-    Write "The inductive step holds."
+    Write, "The inductive step holds."
 
 
 /////////////////////////////////
@@ -239,7 +302,8 @@ a set of 1 horse have the same color. The base case holds.
 
 
 Inductive step: Assume the inductive hypothesis -- that P(n) holds,
-which means that all horses in a set of n horses have the same color.
+which means that all horses in a set of n horses (where n is at
+ least 1) have the same color.
 We must prove that P(n+1) holds -- that all horses in a
 set of n+1 horses have the same color.
 
@@ -255,7 +319,7 @@ Thus the inductive step holds.
 
 
 ---> What went wrong?
-
+If n = 1 in the inductive step, then the sets don't overlap.
 
 ///////////////////////////////////
 
@@ -283,6 +347,9 @@ It follows that x = y, so the inductive step holds.
 
 
 ---> What went wrong?
+In the last paragraph, we assumed x and y were positive integers. However,
+this doesn't mean that x-1 and y-1 are positive integers, so we can't use
+our inductive hypothesis.
 
 ///////////////////////////////////////////
 
