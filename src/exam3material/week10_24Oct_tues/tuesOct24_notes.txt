@@ -1,0 +1,238 @@
+HW 7 is due tonight
+
+HW 8 will be posted after class
+
+////////////////////////////////////
+
+Today:
+- more with induction
+    --> slight change to format from what we discussed Thursday
+
+- recursive definitions
+- direct proofs
+
+////////////////////////////////////
+
+Idea of mathematical induction, again.
+
+
+Goal: prove a claim P(n) holds for all natural numbers (or similar) n
+
+The induction domino effect:
+
+    P(1) ∧ ∀ k (P(k) → P(k+1)) → ∀ n P(n)
+
+
+What is this saying?
+
+
+If we can build the LHS of the implies
+...THEN we can conclude the RHS
+
+
+How does this motivate our induction proofs?
+
+
+
+
+
+////////////////////////////////////
+
+Let P(n) be a claim about each natural number, n.
+
+How to prove it with mathematical induction?
+
+    P(1) ∧ ∀ k (P(k) → P(k+1)) → ∀ n P(n)
+
+
+Base case: Prove P(1). (Prove your claim for the smallest n.)
+
+
+Inductive step (prove ∀ k (P(k) → P(k+1))).
+    Assume the inductive hypothesis -- that P(k) holds for an arbitrary k
+    <in your domain>. <Write what P(k) means.> We must show that P(k+1) holds.
+    <Write what P(k+1) means.>
+
+
+
+Conclusion: ∀ n P(n) (the claim holds for all n in our domain)
+
+
+
+
+In BOTH parts: use words to explain your reasoning. Someone unfamiliar with
+the proof should be able to read your argument and follow what you are
+doing.
+
+
+
+//////////////////////////////////////
+
+Let P(n) be the claim that for all nonnegative numbers n:
+    2^0 + 2^1 + ... + 2^n = 2^(n+1) - 1
+
+Prove using mathematical induction.
+
+
+
+
+//////////////////////////////////////
+
+Use mathematical induction to prove the claim:
+
+    For all natural numbers n, n^3 - n is divisible by 3
+
+
+
+///////////////////////////////////////
+
+Recursively defined functions.
+
+
+To define a function whose domain is the set of nonnegative integers:
+
+Base case: Specify the value of the function at 0 (or some other
+    lowest value). (There may be more than one base case.)
+
+
+Recursive step: Give a rule for finding the value of the function
+    at all bigger integers (give a range) from its smaller values
+
+
+
+
+//////////////////////////////////
+
+Example (domain: all nonnegative integers):
+
+f(0) = 3
+f(n) = 2f(n-1) + 3, for n > 0
+
+
+What is f(3)?
+
+
+
+//////////////////////////////////
+
+What does this define?
+
+g(1) = 1
+g(n) = n * g(n-1), for n > 1
+
+
+g(2) = ?
+
+g(3) = ?
+
+//////////////////////////////////
+
+Consider this pattern: 1, 2, 4, 7, 11, 16, 22, ...
+
+Write a recursive definition.
+
+
+
+
+////////////////////////////////
+
+Recursively defined sets:
+
+
+Consider the subset S of the set of integers, defined as:
+
+Base case: 1, 2 ∈ S
+
+Recursive case: If x ∈ S and y ∈ S, then xy ∈ S
+
+--> what are the elements in S?
+
+
+
+////////////////////////////////
+
+∀ ∃     ∈ ∉     ∅ ⋂ ⋃ ⊂ ⊆   ⋀ ⋁ ¬ →     ℕ ℤ     ≠ ≤ ≥
+
+/////////////////////////////////
+
+Now we will look at more informal proofs.
+
+    --> why? (prove programs are correct, prove running time of programs,
+        prove systems are secure, make AI inferences, prove specifications
+        are consistent, etc.)
+
+///////////////////////////////
+
+Definitions.
+
+
+An integer n is *even* if n = 2k for some k ∈ ℤ.
+
+
+
+An integer n is *odd* if n = 2k + 1 for some k ∈ ℤ.
+
+
+
+Any integer that is not odd is even,
+and any integer that is not even is odd.
+
+
+///////////////////////////////
+
+Direct (conditional) proof
+
+
+- Often want to prove things of the form: "If P, then Q"
+
+--> how would we do this with natural deduction?
+
+
+
+--> how can we do something similar in words?
+
+
+
+
+/////////////////////////////
+
+Direct proof template. If P, then Q
+
+Assume P
+...
+Q
+
+
+
+
+
+/////////////////////////////
+
+Example: prove that the product of two even integers is even.
+
+in predicate logic:
+
+∀x ∀y (Even(x) ^ Even(y) -> Even(xy))
+
+
+--> How is our proof similar to natural deduction?
+
+/////////////////////////////
+
+Example.
+
+The square of any odd integer is odd.
+
+
+
+
+
+
+
+
+How would we have written this in predicate logic?
+
+////////////////////////////////
+
+Next time:
+- more types of proofs
