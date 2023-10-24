@@ -25,9 +25,11 @@ The induction domino effect:
 
 What is this saying?
 
-
-If we can build the LHS of the implies
-...THEN we can conclude the RHS
+P(1): the first case (base case)
+∀ k (P(k) → P(k+1)): inductive step
+    k is a random individual
+    assume P(k) (this is our inductive hypothesis)
+    try to prove P(k+1)
 
 
 How does this motivate our induction proofs?
@@ -45,17 +47,17 @@ How to prove it with mathematical induction?
     P(1) ∧ ∀ k (P(k) → P(k+1)) → ∀ n P(n)
 
 
-Base case: Prove P(1). (Prove your claim for the smallest n.)
+Base case? we must show P(1) holds, where 1 is the first value in my domain.
 
 
-Inductive step (prove ∀ k (P(k) → P(k+1))).
-    Assume the inductive hypothesis -- that P(k) holds for an arbitrary k
-    <in your domain>. <Write what P(k) means.> We must show that P(k+1) holds.
-    <Write what P(k+1) means.>
+Inductive step? (∀ k (P(k) → P(k+1))). Let k be a fixed natural number.
+(or whatever our domain is). We assume our inductive hypothesis -- that
+P(k) holds. (Say what P(k) is). We must show that P(k+1) holds.
+(Say what P(k+1) is)
 
 
 
-Conclusion: ∀ n P(n) (the claim holds for all n in our domain)
+Conclusion? ∀ n P(n) (for all n in my domain)
 
 
 
@@ -73,7 +75,30 @@ Let P(n) be the claim that for all nonnegative numbers n:
 
 Prove using mathematical induction.
 
+Base case. We must show that our claim holds for the smallest value in
+the domain, when n = 0. We have that:
+    2^0 = 1
+and:
+    2^(0+1) - 1 = 1
+The two sides of the claim are equal, so the base case holds.
 
+
+Inductive step. We assume the inductive hypothesis -- that
+    2^0 + 2^1 + ... + 2^k = 2^(k+1) - 1
+
+for some fixed nonnegative integer k. We must prove that:
+    2^0 + 2^1 + ... + 2^k + 2^(k+1) = 2^(k+2) - 1
+
+We have that:
+    2^0 + 2^1 + ... + 2^k + 2^(k+1) = 2^(k+1) - 1 + 2^(k+1)
+                                = 2*2^(k+1) - 1
+                                = 2^(k+2) - 1
+
+Thus the claim holds for k+1, so the inductive step holds.
+
+
+Thus for all nonnegative numbers n:
+         2^0 + 2^1 + ... + 2^n = 2^(n+1) - 1
 
 
 //////////////////////////////////////
@@ -82,7 +107,36 @@ Use mathematical induction to prove the claim:
 
     For all natural numbers n, n^3 - n is divisible by 3
 
+Base case. We must prove that the claim holds for the smallest natural
+number, which is 1. We have that:
+    1^3 - 1 = 0
 
+0 is divisible by 3, so the base case holds.
+
+
+Inductive step. We assume the inductive hypothesis -- that k^3 - k
+is divisible by 3 where k is some fixed natural number. We must prove that
+(k+1)^3 - (k+1) is divisible by 3.
+
+We have that:
+    (k+1)^3 - (k+1) = (k+1)((k+1)^2 -1)
+                    = (k+1)(k^2 + 2k + 1 - 1)
+                    = (k+1)(k^2 + 2k)
+                    = k^3 + 2k^2 + k^2 + 2k
+                    = k^3 + 3k^2 + 2k
+                    = (k^3 - k) + 3k^2 +2k + k
+                    = (k^3 - k) + 3k^2 + 3k
+                    = (k^3 - k) + 3(k^2 + k)
+
+We have that (k^3 - k) + 3(k^2 + k) is divisible by 3 because
+(k^3 - k) is divisible by 3 from that inductive hypothesis and
+3(k^2 + k) is divisible by 3 since 3 is a factor. The sum of two
+factors that are both divisible by 3 is also divisible by 3.
+
+The inductive step holds.
+
+
+We have proved that for all natural numbers n, n^3 - n is divisible by 3.
 
 ///////////////////////////////////////
 
@@ -111,6 +165,13 @@ f(n) = 2f(n-1) + 3, for n > 0
 
 What is f(3)?
 
+f(3) = 2f(2) + 3 = 2*21 + 3 = 45
+
+f(2) = 2f(1) + 3 = 2*9 + 3 = 21
+
+
+f(1) = 2f(0) + 3 = 2*3 + 3 = 9
+
 
 
 //////////////////////////////////
@@ -120,10 +181,9 @@ What does this define?
 g(1) = 1
 g(n) = n * g(n-1), for n > 1
 
+g(3) = 3 * g(2) = 3 * 2 = 6
 
-g(2) = ?
-
-g(3) = ?
+g(2) = 2 * g(1) = 2 * 1 = 2
 
 //////////////////////////////////
 
@@ -131,7 +191,13 @@ Consider this pattern: 1, 2, 4, 7, 11, 16, 22, ...
 
 Write a recursive definition.
 
+f(1) = 1
+f(n) = f(n-1) + (n-1), n > 1
 
+
+f(3) = f(2) + 2 = 2 + 2 = 4
+
+f(2) = f(1) + 1 = 1 + 1 = 2
 
 
 ////////////////////////////////
@@ -148,6 +214,7 @@ Recursive case: If x ∈ S and y ∈ S, then xy ∈ S
 --> what are the elements in S?
 
 
+{1, 2, 4, .. all the powers of 2}
 
 ////////////////////////////////
 
@@ -187,9 +254,14 @@ Direct (conditional) proof
 
 --> how would we do this with natural deduction?
 
+assume P
+...
+get Q
 
 
 --> how can we do something similar in words?
+
+Assume P. .... Q.
 
 
 
@@ -215,6 +287,20 @@ in predicate logic:
 ∀x ∀y (Even(x) ^ Even(y) -> Even(xy))
 
 
+Let x and y be even integers. Then we have that x = 2k and y = 2m
+where k and m are integers. We have that:
+    xy = (2k)(2m)
+        = 2(2km)
+        = 2j
+
+where j is the integer 2km. Thus xy is even.
+
+...
+(we want xy to be even)
+
+
+
+
 --> How is our proof similar to natural deduction?
 
 /////////////////////////////
@@ -224,9 +310,16 @@ Example.
 The square of any odd integer is odd.
 
 
+A x (Odd(x) -> Odd(x^2))
 
+Let x be an odd integer. Then x = 2k+1 where k is an integer.
+We have that:
+    x^2 = (2k+1)^2
+        = 4k^2 + 4k + 1
+        = 2(2k^2 + 2k) + 1
+        = 2m + 1
 
-
+where m is the integer 2k^2 + 2k. Thus x^2 is odd.
 
 
 
@@ -236,3 +329,4 @@ How would we have written this in predicate logic?
 
 Next time:
 - more types of proofs
+
