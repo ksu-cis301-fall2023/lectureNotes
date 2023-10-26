@@ -33,14 +33,33 @@ Assume !Q
 Example (contrapositive)
 
 If x^2 is odd for an integer x, then x is odd.
+P->Q
+P: x^2 is odd for an integer x
+Q: x is odd
+
+contrapositive: !Q -> !P
 
 
+Try direct. Assume x^2 is odd for some integer x.
+Then x^2 = 2k+1 for some integer k. We can't easily infer
+anything about x from x^2 without involving square roots.
+
+We will use contrapositive instead!
+
+
+
+Proof (contrapositive). Assume x is not odd (this is the !Q).
+Then x must be even. Then x = 2k for some integer k.
+
+Squaring both sides, we have:
+    x^2 = 4k^2
+        = 2(2k^2)
+
+We have that x^2 = 2b where b is the integer 2k^2, so x^2 is even,
+which means that x^2 is not odd.
 
 
 --> best to indicate in proof that you are using contrapositive
-
-
-
 
 /////////////////////////////
 
@@ -49,9 +68,28 @@ Example (contrapositive)
 Suppose x ∈ Z. If 7x+9 is even, then x is odd.
 
 
+(Direct proof). Assume 7x+ 9 is even for some integer x. Then 7x + 9 = 2k for
+some integer k. We would need to isolate x, which would most directly involve
+dividing both sides by 7. This would be more challenging to work with.
+
+We will use contrapositive instead!
 
 
-(can we do the same thing with a direct proof?)
+
+Proof (contrapositive). Let x be an integer that is not odd. Then x is even,
+so x = 2k for some integer k.
+
+We have that:
+    7x + 9 = 7(2k) + 9
+            = 14k + 9
+            = (14k + 8) + 1
+            = 2(7k + 4) + 1
+            = 2b + 1
+
+So 7x + 9 = 2b + 1 where b is the integer 7k + 4, which means that
+7x + 9 is odd. Thus 7x + 9 is not even.
+...
+want: 7x + 9 to be not even (odd)
 
 
 
@@ -67,20 +105,20 @@ Let a and b be two equal positive integers. We have that:
 
     1) a = b                    (premise)
 
-    2) a^2 = ab                 justification?
+    2) a^2 = ab                 (multiplied both sides by a)
 
-    3) a^2 - b^2 = ab - b^2     ?
+    3) a^2 - b^2 = ab - b^2     (subtracted b^2 from both sides)
 
-    4) (a-b)(a+b) = b(a-b)      ?
+    4) (a-b)(a+b) = b(a-b)      (factored both sides)
 
-    5) a+b = b                  ?
+    5) a+b = b                  (divided both sides by a-b)
 
-    6) 2b = b                   ?
+    6) 2b = b                   (we know a=b, so replaced a with b)
 
-    7) 2 = 1                    ?
+    7) 2 = 1                    (divided both sides by b)
 
 
-What went wrong?
+What went wrong? Can't divide by a-b, because a=b, and we can't divide by 0.
 
 //////////////////////////////////////
 
@@ -105,10 +143,12 @@ and that b is a *multiple* of a.
 
 3 divides 12, 3 | 12
 
-3 is a <fill in blank> of 12, 12 is a <fill in blank> of 3
+3 is a divisor of 12, 12 is a multiple of 3
 
 
 (how do we know, by using definition?)
+
+12 = 3*4, where 4 is an integer
 
 
 
@@ -164,8 +204,25 @@ Example (use proof by contradiction):
 
 If x^2 is even for an integer x, then x is even.
 
-(which template?)
+(which template? 2)
 
+Suppose x^2 is even for some integer x. Suppose, for the sake of
+contradiction, that x is not even -- that is, assume x is odd.
+
+Since x^2 is even, we have that x^2 = 2k for some integer k.
+Since x is odd, we have that x = 2m + 1 for some integer m.
+
+We have that:
+    x^2 = (2m+1)^2
+        = 4m^2 + 4m + 1
+        = 2(2m^2 + 2m) + 1
+
+And so x^2 = 2b + 1 where b is the integer m^2 + 2m, and so x^2 is odd.
+This contradicts with our assumption that x^2 is even.
+
+Thus x is even.
+
+goal: contradiction!
 
 
 
@@ -176,7 +233,7 @@ Example, if time (use proof by contradiction):
 Suppose n ∈ Z. If 3 does not divide n^2, then 3 does not divide n.
 
 
-
+Try this one on your own.
 
 
 
@@ -184,7 +241,32 @@ Suppose n ∈ Z. If 3 does not divide n^2, then 3 does not divide n.
 
 Example: use proof by contradiction to prove that sqrt(2) is irrational.
 
-(which template?)
+(which template? 1)
+
+Assume, for the sake of contradiction, that sqrt(2) is not irrational --
+that is, assume it is rational. Then we can find two integers p and q
+(q != 0) such that sqrt(2) = p/q. Choose p and q such p/q is fully reduced,
+where p and q share no common factors.
+
+We have that:
+    2 = p^2/q^2
+
+Multiplying both sides by q^2 gives us:
+    2q^2 = p^2
+
+Thus p^2 is even. From our previous proof, we have that p is even.
+Then p = 2k for some integer k.
+
+Plugging in, we have that:
+    2q^2 = (2k)^2
+        = 4k^2
+Dividing both sides by 2 gives us q^2 = 2k^2. Thus q^2 is also even, and
+so q is also even from our previous proof.
+
+p and q both share 2 as a factor, which contradicts our assumption that
+they had no common factors.
+
+Thus sqrt(2) is irrational.
 
 
 /////////////////////////////////
@@ -196,18 +278,31 @@ Proofs with sets.
 Prove that A ⊆ B?
     --> how would we express this in predicate logic?
 
-
+∀ x (x ∈ A → x ∈ B)
 
     --> proof template?
+    let x be an element in A (say what that means)
+    show that x is an element in B
 
 
-Prove that A = B?
+Prove that A = B? show A ⊆ B and B ⊆ A
 
 ///////////////////////////////
 
 Example.
 
 Prove that {x : x = 4k + 2, k ∈ ℤ} ⊆ {x : x = 2a, a ∈ ℤ}
+
+A = {x : x = 4k + 2, k ∈ ℤ}
+B = {x : x = 2a, a ∈ ℤ}
+
+Let x ∈ A. Then x = 4k + 2 for some integer k. We have that:
+    x = 4k + 2
+      = 2(2k + 1)
+      = 2a
+Where a is the integer 2k + 1. Therefore x ∈ B.
+
+Thus A ⊆ B.
 
 ///////////////////////////////
 
@@ -227,6 +322,22 @@ Let A = {x : x ∈ ℤ, 2|x}
 Let B = {x : x ∈ ℤ, 3|x}
 Let C = {x : x = 6a, a ∈ ℤ}
 
+First, we must show that A ⋂ B ⊆ C.
+Let x ∈ A ⋂ B. Thus x ∈ A and x ∈ B.
+If x is an element of A, we have that 2 | x. Thus x=2k for some integer k.
+if x is an element of B, we have 3 | x. Thus x=3m for some integer m.
+
+x = 4x - 3x
+    = 4(3m) - 3(2k)
+    = 12m - 6k
+    = 6(2m - k)
+
+Thus x = 6a where a is the integer 2m -k, and so x ∈ C.
+It follow that A ⋂ B ⊆ C.
+
+
+Next, we must show that C ⊆ A ⋂ B.
+(try this direction on your own)
 
 //////////////////////////////
 
