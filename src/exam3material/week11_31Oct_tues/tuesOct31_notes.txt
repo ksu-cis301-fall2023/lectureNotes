@@ -1,0 +1,468 @@
+HW 8 due tonight
+
+Use proof by contradiction to prove that the sum of a rational and
+irrational number is irrational.
+
+How to write as an IF/THEN?
+
+
+
+
+HW 9 will be posted later today
+
+
+//////////////////////////
+
+Today:
+- Intro to programming logic
+- Assume statements
+- Assert statements
+- Processing assignment statements
+
+//////////////////////////
+
+Next section: programming logic
+
+Apply proof techniques and similar reasoning to prove correctness
+of basic programs.
+
+(Why does this matter?)
+
+
+
+
+
+
+
+////////////////////////////
+
+Our Logika programs are a subset of Scala
+    - variables (boolean, int, sequences)
+    - printing and user input
+    - math operations
+    - conditional operations
+    - if and if/else statements
+    - while loops
+    - functions
+
+
+Basic Logika program #1
+    - get user input number, add one to it, print it out
+
+Basic Logika program #2
+    - get user input number, print whether it is positive or negative
+
+Basic Logika program #3
+    - use a loop to print the numbers from 10 down to 1
+
+Basic Logika program #4
+    - write a separate function to add all elements in a sequence
+    - create a sequence, call the function, print the result
+
+
+
+
+
+
+////////////////////////
+
+assume statements
+    - preconditions
+    - things we must assume about user input
+
+
+
+assert statements
+    - postconditions
+    - what we want to be true after some code
+    - PROVE, not test
+    - must prove EXACTLY that statement before we assert it
+
+
+
+How are Logika asserts different from C# (and other languages)?
+
+
+
+
+
+////////////////////////
+
+Process of validating a program:
+
+
+
+(any assumptions needed about user input - assume)
+
+program statement
+
+(claims/asserts)
+
+program statement
+
+(claims/asserts)
+
+program statement
+
+(claims/asserts about output/results/postconditions)
+
+
+
+
+
+
+///////////////////////////////
+
+Claims go in "logic blocks", which look like:
+
+l"""{
+    //line numbers with claims and justifications
+    //similar to prop/pred logic proofs
+
+    x. claim            justification lineNumbers
+}"""
+
+//////////////////////////////
+
+Justifications (for now):
+
+premise
+    - something from an assume
+    - a program assignment that was just executed
+        (use == to show equality in the claim)
+    - something shown in a previous logic block
+
+
+algebra
+    - any algebraic manipulation on a previous claim
+    - include all relevant line numbers in whatever order
+        (might be zero or 3+)
+
+ANY of your propositional/predicate logic justifications
+    (especially ^e1, ^e2, ^i, Vi1, Vi2)
+
+
+
+
+//////////////////////////////
+
+(add.logika)
+Example: write a program that creates a number, x, with value 2
+
+Create a value, y, that is initialized to x + 2
+
+We want to assert at the end that y is 4
+
+Write the necessary logic blocks
+
+
+
+
+--> How could we also assert that x is still 2 using ONE assert?
+
+
+
+
+
+//////////////////////////////
+
+Example (max.logika):
+
+get 2 user inputs: x and y
+assume that x > y
+set a max variable to x
+
+want to assert that max is the biggest of our two inputs
+
+
+
+
+
+
+
+//////////////////////////////
+
+The algebra justification works for most mathematical manipulations
+
+Will not work on claims involving ∧, ∨, →, ⊥, ∀, ∃
+
+Another justification: subst
+
+
+
+
+
+
+
+
+
+/////////////////////////////
+
+subst1 m n
+
+l"""{
+    ...
+    m. LHS_M == RHS_M       //must be an equivalence
+    ...
+    n. LHS_N == RHS_N
+    ...
+    x. (claim)              subst1 m n
+}"""
+
+(claim) rewrites claim n by substituting all occurrences of
+    LHS_M with RHS_M
+
+
+Example:
+
+l"""{
+    ...
+    m. x + 1 == y - 4
+    ...
+    n. x*(x + 1) == (x + 1) + y
+    ...
+    j. x*(y - 4) == (y - 4) + y     subst1 m n
+}"""
+
+
+
+
+
+
+/////////////////////////////
+
+subst2 m n
+
+l"""{
+    ...
+    m. LHS_M == RHS_M       //must be an equivalence
+    ...
+    n. LHS_N == RHS_N
+    ...
+    x. (claim)              subst2 m n
+}
+
+(claim) rewrites claim n by substituting all occurrences of
+    RHS_M with LHS_M
+
+
+Example:
+
+l"""{
+    ...
+    m. x + 1 == y
+    ...
+    n. y*(x + 1) == (x + 1) + y
+    ...
+    x. (x + 1)*(x + 1) == (x + 1) + (x + 1) subst2 m n
+}"""
+
+
+
+
+
+/////////////////////////////////
+
+Example (code fragment):
+
+val num: Z = x + 2
+val answer: Z = 4*num + 8
+val another: Z = 5 - (x + 2)*3
+
+
+l"""{
+    1. num == x + 2             premise
+    2. answer == 4*num + 8      premise
+    3. another == 5 - (x+2)*3   premise
+    4. answer == 4*(x+2) + 8    subst1 1 2
+    5. another == 5 - num*3     subst2 1 3
+}"""
+
+Using our num == x + 2 equivalence:
+
+--> substitute in for "num" in "answer" calculation (using subst)
+
+
+--> substitute in for "x+2" in "another" calculation
+
+
+
+
+
+
+
+//////////////////////////////
+
+Assignment with mutation
+
+
+var x: Z = 2
+
+//what could we put in a logic block here?
+
+
+
+x = x + 2
+
+
+//what could we put in a logic block here?
+
+
+
+(what are we missing?)
+
+
+//////////////////////////////
+
+If you change the value of variable "name", write that claim using:
+
+    name_old
+
+in the very next logic block. Only ONE "_old" value exists at a time
+
+
+The name_old refers to value of the variable just before the latest update.
+
+Goal: state that variable's current value WITHOUT using _old by the
+end of next logic block
+
+
+y = y + 4
+x = x + 3
+l"""{
+    1. x == x_old + 3               premise
+    2. y == y_old + 4               premise //is this OK?
+}"""
+
+
+
+
+
+
+
+//////////////////////
+
+Example (add3.logika):
+
+- get an input number
+- save out an "orig" value that is equal to the input
+
+add 1 to the input number
+add 2 to the input number
+
+want to assert that the resulting number is 3 more than the orig value
+
+
+
+--> what if we added an assume that the input number was positive?
+
+--> could we add to our assert that the resulting number is positive?
+
+//////////////////////
+
+Example (swap.logika):
+
+
+inputs x and y (save their original values)
+
+//Example: x = 4, y = 7
+
+x = x + y         //x = ?, y = ?
+y = x - y         //x = ?, y = ?
+x = x - y         //x = ?, y = ?
+
+now x and y will have switched
+
+
+///////////////////////
+
+Programs with division.
+
+
+Recall: what is the only numerical type in our toy programs?
+
+--> what does that mean about division?
+
+
+
+
+
+--> what do you think we'll need to demonstrate before using division?
+
+
+
+//what should go here?
+
+
+
+x = a / 2
+
+
+
+--> consider this snippet:
+
+
+val a: Z = num / 3
+val b: Z = num*3
+
+suppose num is 16, then a would be ?
+
+l"""{
+    1. a == num/3               premise
+    2. a*3 == num               algebra 1           //is this true?
+
+    3. b == num*3               premise
+    4. b/3 == num               algebra 3           //is this true?
+}"""
+
+
+/////////////////////////////
+
+Programs with modulo.
+
+
+To keep things easier to think about, modulo is only defined for:
+    - nonnegative "numerators"
+    - positive "denominators"
+
+numerator % denominator
+
+
+--> what does that mean we'll need to demonstrate before using modulo?
+
+
+
+
+//what should go here?
+
+x = a % 2
+
+
+
+
+
+--> consider this snippet:
+
+val test: Z = num/3
+
+//maybe num is 16
+//test is 5
+
+l"""{
+    1. test == num/3                premise
+    2. num == 3*test + num%3        algebra 1   //is this true?
+}"""
+
+--> and this one:
+
+l"""{
+    1. x % 2 == 0                   (some justification)
+    2. div = x / 2                  (some justification)
+    3. 2*div == x                   algebra 1 2         //is this true?
+}"""
+
+///////////////////////
+
+Next time:
+- programs with division and modulus
+- programs with conditional statements
