@@ -4,9 +4,22 @@ val x: Z = readInt("Enter first number: ")
 val y: Z = readInt("Enter second number: ")
 
 //how do we assume x is bigger than y?
+assume(x > y)
 
 val max: Z = x
+
+//it's still the case that x > y here because x and y haven't changed
+l"""{
+    1. x > y                premise //from the assume
+    2. max == x             premise //from the assignment
+    3. max >= x             algebra 2
+    4. max >= y             algebra 3 1
+    5. max >=x ^ max >=y    ^i 3 4
+    6. max == x V max == y  Vi1 2
+}"""
 
 //what can we put in a logic block here?
 
 //how do we assert max is the biggest between our two inputs?
+assert(max >= x & max >= y)
+assert(max == x | max == y)

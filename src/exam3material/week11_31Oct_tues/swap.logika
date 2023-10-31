@@ -10,9 +10,36 @@ val yOrig: Z = y
 //want to swap x and y
 x = x + y
 
+//need a logic block after each variable mutation
+l"""{
+    1. x == x_old + y           premise //from the assignment
+    2. yOrig == y               premise //from the original assignment
+    3. xOrig == x_old           premise //from the original assignment
+    4. x == xOrig + yOrig       algebra 1 3 2
+}"""
+
 y = x - y
+l"""{
+    1. x == xOrig + yOrig       premise //from previous logic block
+    2. y == x - y_old           premise //from recent assignment
+    3. yOrig == y_old           premise //from previous logic block
+    4. x == xOrig + y_old       algebra 1 3
+    5. y_old == x - y           algebra 2
+    6. x == xOrig + x - y       algebra 4 5
+    7. y == xOrig               algebra 6
+}"""
 
 x = x - y
 
+l"""{
+    1. y == xOrig                   premise
+    2. x == x_old - y               premise
+    3. x_old == xOrig + yOrig      premise
+    4. x == xOrig + yOrig - y       algebra 2 3
+    5. x == yOrig                   algebra 1 4
+    6. x == yOrig ^ y == xOrig      ^i 5 1
+}"""
+
 
 //what do we want to claim we did?
+assert(x == yOrig & y == xOrig)
