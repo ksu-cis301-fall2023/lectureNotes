@@ -1,0 +1,11 @@
+import org.sireum.logika._
+
+var num: Z = readInt("Enter a number: ")
+val numOrig : Z = num
+
+//FIRST: write the code that updates num to be the
+//absolute value of the input
+
+//be sure to include an "else" branch (even if empty) for the verification
+
+//How can we assert that num is the absolute value of the input?

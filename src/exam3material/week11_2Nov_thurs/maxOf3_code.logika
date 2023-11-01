@@ -1,0 +1,29 @@
+//just the code for finding the biggest of three numbers
+
+import org.sireum.logika._
+
+val a: Z = readInt()    //suppose a is 3
+val b: Z = readInt()    //suppose b is 5
+val c: Z = readInt()    //suppose c is 10
+var max: Z = 0
+
+/*
+1) finish the code
+2) add asserts at the bottom
+3) mark where logic blocks would go
+4) finish the verification in the next file
+*/
+
+if (a >= b) {
+    //finish code here
+} else {
+    //finish code here
+}
+
+//overall summary here
+
+//Reminder: how do we run Logika programs?
+print("Max between ", a, ", ", b, " and ", c, " is ", max)
+
+//How do we know we have the max?
+//what assert(s) do we want?
