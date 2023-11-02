@@ -12,20 +12,27 @@ Programs with division.
 
 
 What is the only numerical type in our toy programs?
+    int
 
 --> what does that mean about division?
 
-
+16 / 3 = 5
 
 
 
 --> what do you think we'll need to demonstrate before using division?
 
+make sure the denominator is not 0
+
+denominator != 0        (justification)
+
 
 
 //what should go here?
 
-
+l"""
+    1. 2 != 0               algebra
+}"""
 
 x = a / 2
 
@@ -37,13 +44,13 @@ x = a / 2
 val a: Z = num / 3
 val b: Z = num*3
 
-suppose num is 16, then a would be ?
+suppose num is 16, then a would be 5?
 
 l"""{
-    1. a == num/3               premise
-    2. a*3 == num               algebra 1           //is this true?
+    1. a == num/3               premise             //from declaration
+    2. a*3 == num               algebra 1           //NO!
 
-    3. b == num*3               premise
+    3. b == num*3               premise             //from declaration
     4. b/3 == num               algebra 3           //is this true?
 }"""
 
@@ -67,6 +74,11 @@ numerator % denominator
 
 //what should go here?
 
+l"""{
+    1. a >= 0               (some justification)
+    2. 2 > 0                algebra
+}"""
+
 x = a % 2
 
 
@@ -75,6 +87,13 @@ x = a % 2
 
 --> consider this snippet:
 
+
+l"""{
+    1. num >= 0             (some reason)
+    2. 3 != 0               algebra
+    3. 3 > 0                algebra
+}"""
+
 val test: Z = num/3
 
 //maybe num is 16
@@ -82,7 +101,8 @@ val test: Z = num/3
 
 l"""{
     1. test == num/3                premise
-    2. num == 3*test + num%3        algebra 1   //is this true?
+    2. num == 3*test + num%3        algebra 1   //is this true? YES!
+                                        //takes into account the remainder
 }"""
 
 --> and this one:
@@ -161,8 +181,8 @@ l"""{
 
 if (C) {
     l"""{
-        1. P            premise
-        2. C            premise //condition is true because I'm in the if
+        1. P            premise //why? P was true before if/else
+        2. C            premise //why? condition was true
     }"""
 
     claims
@@ -174,8 +194,8 @@ if (C) {
 
 } else {
     l"""{
-        1. P            premise
-        2. !(C)         premise //condition is not true (in else)
+        1. P            premise //why? P was true before if/else
+        2. !(C)         premise //why? condition was false
     }"""
 
     claims
@@ -187,8 +207,8 @@ if (C) {
 }
 
 l"""{
-    1. Q                premise //proved Q in both branches
-    2. A V B            premise //A from "if", B from "else"
+    1. Q                premise //why? Q was true in both branches
+    2. A V B            premise //why? A was true in if, B true in else
 }"""
 
 /////////////////////////////
@@ -205,6 +225,9 @@ Revisit the max example (maxOfTwo.logika)
 
 Example: absolute value
 
+
+////////////////////////////////
+<--- stopped here, will finish on Tuesday
 
 ////////////////////////////////
 

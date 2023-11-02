@@ -17,6 +17,7 @@ if (a >= b) {
         //want: max is a, and max >= a, b, c
         l"""{
             //FILL IN
+            //P
         }"""
     } else {
         max = c
@@ -25,6 +26,7 @@ if (a >= b) {
         //want: max is c, and max >= a, b, c
         l"""{
             //FILL IN
+            //P
         }"""
     }
 
@@ -33,6 +35,8 @@ if (a >= b) {
         //FILL IN
         //what can we state as premises?
         //how do we get max == a V max == b V max == c?
+
+        //P
     }"""
 } else {
     //what do we know is NOT the max? a
@@ -47,6 +51,7 @@ if (a >= b) {
             4. max >= a                         algebra 3 1
             5. max >= b                         algebra 3
             6. max >= c                         algebra 3 2
+            //P
         }"""
     } else {
         max = c
@@ -59,11 +64,14 @@ if (a >= b) {
             4. max >= a                         algebra 3 1 2
             5. max >= b                         algebra 3 2
             6. max >= c                         algebra 3
+            //P
         }"""
     }
 
     //summary logic block
     l"""{
+        //P
+
         1. max >= a                             premise //true in both
         2. max >= b                             premise //true in both
         3. max >= c                             premise //true in both
