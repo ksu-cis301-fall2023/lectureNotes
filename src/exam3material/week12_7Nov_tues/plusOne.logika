@@ -1,0 +1,24 @@
+
+import org.sireum.logika._
+
+def plusOne(n: Z): Z = {
+    //what goes here?
+
+    //what if we only wanted to work with positive integers?
+    //what could we promise to return?
+
+    val answer: Z = n+1
+
+    //what do we need to do before returning?
+
+    return answer
+}
+
+////////// Test code ///////////////
+
+var x: Z = 5
+var added: Z = plusOne(x)
+
+//what do we want to e able to assert that added is?
+
+//how do we get the assert to hold?
