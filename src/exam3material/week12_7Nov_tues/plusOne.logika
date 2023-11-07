@@ -4,12 +4,25 @@ import org.sireum.logika._
 def plusOne(n: Z): Z = {
     //what goes here?
 
-    //what if we only wanted to work with positive integers?
-    //what could we promise to return?
+    l"""{
+        requires n >= 0
+        ensures result == n + 1
+            result >= 1
+    }"""
+
+    //what if we wanted to promise to return a positive number?
 
     val answer: Z = n+1
 
     //what do we need to do before returning?
+    //need: answer == n+1
+    //need: answer >= 1
+
+    l"""{
+        1. n >= 0           premise //precondition
+        2. answer == n+1    premise //variable assignment (proves postcondition)
+        3. answer >= 1      algebra 1 2 //proves postcondition
+    }"""
 
     return answer
 }
@@ -17,8 +30,26 @@ def plusOne(n: Z): Z = {
 ////////// Test code ///////////////
 
 var x: Z = 5
-var added: Z = plusOne(x)
+//prove the precondition
+//need: x + 2 >= 0
 
-//what do we want to e able to assert that added is?
+l"""{
+    1. x == 5           premise
+    2. x + 2 >= 0       algebra 1 //proves the precondition
+}"""
+
+var added: Z = plusOne(x + 2)
+
+l"""{
+    1. added == (x+2) + 1           premise //from the postcondition
+    2. added >= 1                   premise //second postcondition
+    3. x == 5                       premise //from previous assignment
+    4. added == 8                   algebra 1 3
+}"""
+
+assert(added == 8)
+assert(added >= 1)
+
+//what do we want to be able to assert that added is?
 
 //how do we get the assert to hold?

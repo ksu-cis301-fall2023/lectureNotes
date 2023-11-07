@@ -31,12 +31,12 @@ Max of 3 numbers
 Function contracts - just under function definition:
 
 l"""{
-    requires (precondition)
-    ensures (postcondition)
+    requires (preconditions)
+    ensures (postconditions)
 }"""
 
 
-Requires/precondition:
+Requires/preconditions:
 - any assumptions we need to make about the parameters
 - user must prove these requirements BEFORE calling the function
 - list preconditions as PREMISES in first logic block in function
@@ -45,9 +45,11 @@ Requires/precondition:
 
 ///
 
-Ensures/postcondition:
-- describes what the function returns
+Ensures/postconditions:
+- describes what the function returns (or what it changes)
     - use "result" to mean return value
+
+- function has to PROVE that it is fulfilling the postconditions
 
 - user can use a postcondition as a PREMISE in a logic block
     after calling the function
@@ -89,18 +91,20 @@ Four steps:
 
 1) What should be done before calling the function?
 
-    suppose a precondition is: x < 0 | x > 10
+    suppose a precondition is (x is the param): x < 0 | x > 10
     and we do:
         function(4-2)
 
     --> what would we need to do before the function call?
+
+    4-2 < 0 V 4-2 > 10
 
 
 
 
 2) What can the function itself do with the preconditions?
 
-
+list as premises
 
 
 3) What must the function do with the postconditions?
@@ -113,7 +117,7 @@ Four steps:
 
     what do we have to prove before returning?
 
-
+    answer-y > 0
 
 
 
@@ -122,11 +126,9 @@ Four steps:
 
     x = function(y+7)
 
+y+7 > 0
 
 
-maybe a postcondition is (num is the param): result > num
-
-What can we claim?
 
 
 
@@ -137,7 +139,7 @@ What can we claim?
 Example: put our abs code in a function (absFn.logika)
 
 
-
+--> skipped -- do this one on your own
 
 /////////////////////////////////
 
@@ -159,11 +161,11 @@ Recursive functions
 
 Before making a recursive call, what do we have to do?
 
-
+prove the precondition (for what WE are passing as the parameters)
 
 After returning from the recursive call, what *can* we do?
 
-
+list the postcondition of the recursive call as a premise
 
 
 /////////////////////////////////

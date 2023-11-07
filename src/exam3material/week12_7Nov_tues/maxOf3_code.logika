@@ -15,17 +15,46 @@ var max: Z = 0
 */
 
 if (a >= b) {
+    //what do we know here? how to find the max?
+    //max isn't b
     if (a >= c) {
         max = a
+
+        //logic block
+        //want: max >= a
+        //want: max >= b
+        //want: max >= c
+        //want: max == a
     } else {
         max = c
+
+        //logic block
+        //want: max >= a
+        //want: max >= b
+        //want: max >= c
+        //want: max == c
     }
+
+    //max == a V max == c
 } else {
+    //what do we know here? how to find the max?
+    //a is not the max
     if (b >= c) {
         max = b
+
+        //logic block
+        //want: max >= a
+        //want: max >= b
+        //want: max >= c
     } else {
         max = c
+
+        //logic block
+        //want: max >= a
+        //want: max >= b
+        //want: max >= c
     }
+
 }
 
 //overall summary here
@@ -35,3 +64,7 @@ print("Max between ", a, ", ", b, " and ", c, " is ", max)
 
 //How do we know we have the max?
 //what assert(s) do we want?
+assert(max >= a)
+assert(max >= b)
+assert(max >= c)
+assert(max == a | max == b | max == c)

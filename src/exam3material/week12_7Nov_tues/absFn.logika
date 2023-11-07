@@ -2,6 +2,8 @@
 // This was our code for absolute value
 // modify it to be in a function
 
+//We skipped this problem -- I recommend you do it on your own
+
 import org.sireum.logika._
 
 def absVal(numOrig: Z) : Z = {
