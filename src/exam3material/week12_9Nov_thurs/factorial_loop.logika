@@ -1,0 +1,32 @@
+import org.sireum.logika._
+
+
+
+//want to return n!
+//5! = 5 * 4 * 3 * 2 * 1
+def factorial(n: Z): Z = {
+    //function contract
+    l"""{
+
+    }"""
+
+    var product: Z = 1
+    var count: Z = 1
+
+    while (count != n) {
+
+        //after count iterations, what is product?
+
+        count = count + 1
+        product = product * count
+    }
+
+    return product
+}
+
+/////////// Test code //////////////////
+
+val test: Z = 3
+val answer: Z = factorial(test)
+
+assert(answer == 6)

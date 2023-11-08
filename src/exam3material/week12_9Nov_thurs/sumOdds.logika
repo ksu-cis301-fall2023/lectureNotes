@@ -1,0 +1,35 @@
+
+import org.sireum.logika._
+
+//sum of the first n odd numbers equals n*n
+
+def sumOdds(n: Z): Z = {
+    //what goes here?
+    //what values of n are allowed?
+
+    var sum: Z = 0
+    if (n == 1) {
+        //the sum of the first 1 odd numbers is 1
+
+        sum = 1
+
+    } else {
+        //add up the first n-1 odd numbers
+        sum = sumOdds(n-1)
+
+        //now add on the nth odd number
+        //(2*n - 1 is our nth odd number)
+        sum = sum + 2*n - 1
+    }
+
+    return sum
+}
+
+////////////// Test code //////////////
+
+val pos: Z = 4
+
+//call sumOdds to get the sum of the 4 odd numbers
+val test: Z = sumOdds(pos)
+
+//what do we want to assert that test is?
