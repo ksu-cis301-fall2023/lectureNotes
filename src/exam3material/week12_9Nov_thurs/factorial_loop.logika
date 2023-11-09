@@ -1,30 +1,81 @@
 import org.sireum.logika._
 
-
+l"""{
+    fact
+        def factDef(n: Z): Z
+            fOne. factDef(1) == 1
+            fBig.  ∀x: Z  x > 1 → factDef(x) == factDef(x - 1) * x
+}"""
 
 //want to return n!
 //5! = 5 * 4 * 3 * 2 * 1
 def factorial(n: Z): Z = {
     //function contract
     l"""{
-
+        requires n >= 1
+        ensures result == factDef(n) //result == n!
     }"""
 
     var product: Z = 1
     var count: Z = 1
 
+    //prove invariant holds here
+    //need: product == factDef(count)
+    l"""{
+        1. product == 1         premise //variable assignment
+        2. count == 1           premise //variable assignment
+        3. factDef(1) == 1      fact fOne //use proof definition
+        4. product == factDef(count)    algebra 1 2 3
+        5. count >= 1           algebra 2 //prove second invariant
+    }"""
+
     while (count != n) {
+        l"""{
+            invariant product == factDef(count)
+                count >= 1
+            modifies count, product
+        }"""
 
         //after count iterations, what is product?
 
         count = count + 1
+
+        l"""{
+            1. product == factDef(count_old)    premise //invariant holds
+            2. count == count_old + 1           premise //from variable update
+            3. product == factDef(count-1)      algebra 1 2
+            4. count_old >= 1                   premise //from invariant
+            5. count > 1                        algebra 2 4
+        }"""
+
         product = product * count
+
+        l"""{
+            1. product_old == factDef(count-1)  premise //from previous block
+            2. product = product_old * count    premise //from update
+            3. product == factDef(count-1) * count  algebra 1 2
+            4. ∀x: Z  x > 1 → factDef(x) == factDef(x - 1) * x  fact fBig
+            5. count > 1 → factDef(count) == factDef(count - 1) * count Ae 4 count
+            6. count > 1                            premise
+            7. factDef(count) == factDef(count - 1) * count ->e 5 6
+            8. product == factDef(count)                algebra 3 7
+            9. count >= 1                       algebra 6 //proves 2nd loop invariant
+            //need: product == factDef(count)
+        }"""
+
+        //at the end of an iteration, product = count!
     }
+
+    //we still need to prove the postcondition
+    //will finish on Tuesday
 
     return product
 }
 
 /////////// Test code //////////////////
+
+//we still need to prove the precondition and the assert
+//will finish on Tuesday
 
 val test: Z = 3
 val answer: Z = factorial(test)

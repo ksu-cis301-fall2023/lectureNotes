@@ -10,13 +10,68 @@ def mult(x: Z, y: Z): Z = {
     var total: Z = 0
     var i: Z = 0
 
-    while (i != y) {
+    //prove loop invariant holds before loop begins
+    l"""{
+        1. total == 0               premise
+        2. i == 0                   premise
+        3. total == x*i             algebra 1 2
+        //need: total == x*i
+        4. y >= 0                   premise //precondition
+        5. i <= y                   algebra 2 4
+    }"""
+
+    while (i < y) {
         //what should the loop invariant be?
+        l"""{
+            invariant total == x*i
+                i <= y
+            modifies total, i
+        }"""
+
+        //assume that the invariant holds here (beginning of iteration)
+        //we can list the invariant(s) as a premise
 
         total = total + x
+
+        l"""{
+            1. total == total_old + x       premise //from variable assignment
+            2. i < y                        premise //loop condition is true
+            3. total_old == x*i             premise //loop invariant holds
+            4. total_old == total - x       algebra 1
+            5. total - x == x*i             algebra 3 4
+        }"""
+
         i = i + 1
+
+        l"""{
+            1. i == i_old + 1               premise //from variable assignment
+            2. i_old < y                    premise //loop condition is true
+            3. total - x == x*i_old         premise //from previous block
+                                                    //about invariant
+            4. i_old == i - 1               algebra 1
+            5. total - x == x*(i-1)         algebra 3 4
+            6. total == x*(i-1) + x         algebra 5
+            7. total == x*i - x + x         algebra 6
+            8. total == x*i                 algebra 7
+            9. i_old <= y                   premise //from loop invariant
+            10. i <= y                      algebra 1 2
+            //need: total == x*i
+            //need: i <= y
+        }"""
+
+        //prove that the invariant still holds here
     }
 
+    l"""{
+        1. total == x*i                 premise //loop invariant holds
+        2. !(i < y)                    premise //loop condition is false
+        3. i >= y                       algebra 2
+        4. i <= y                       premise //loop invariant
+        5. i == y                       algebra 3 4
+        6. total == x*y                 algebra 1 5
+    }"""
+
+    //need total == x*y for the postcondition
     return total
 }
 

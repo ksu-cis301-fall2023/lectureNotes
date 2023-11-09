@@ -58,7 +58,25 @@ def absVal(numOrig: Z) : Z = {
 
 val x: Z = -4
 
+//prove precondition (but there isn't one here)
 val pos: Z = absVal(x)
+
+l"""{
+    1. pos >= 0         premise //from the first postcondition
+    2. pos == x V pos == -x premise //from the second postcondition
+    3. x == -4              premise //from variable assignment
+    4. {
+        5. pos == x         assume
+        6. pos == -4        algebra 3 5
+        7. _|_              algebra 1 6
+        8. pos == 4         _|_e 7
+    }
+    9. {
+        10. pos == -x       assume
+        11. pos == 4        algebra 10 3
+    }
+    12. pos == 4            Ve 2 4 9
+}"""
 
 //how can we prove this assert?
 
