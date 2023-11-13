@@ -1,0 +1,71 @@
+HW 10 due tonight
+
+Exam 3 is Thursday, November 16
+    (we'll review today)
+
+There will be one more HW assignment, posted after fall break
+
+//////////////////////////////
+
+Today:
+- Revisit Logika facts and factorial example
+- Exam 3 review
+
+///////////////////////////////
+
+Logika facts - write recursive definitions
+
+l"""{
+    fact
+        def factDef(n: Z): Z
+            fOne. factDef(1) == 1
+            fBig.  ∀x: Z  x > 1 → factDef(x) == factDef(x - 1) * x
+}"""
+
+--> factDef(1) = ?
+--> factDef(2) = ?
+--> factDef(3) = ?
+--> n > 1, factDef(n) = ?
+--> count > 1, factDef(count) = ?
+
+(why do we need to know how n and count compare to 1?)
+
+
+--> look again at factorial example
+
+//////////////////////////////////////
+
+Exam 3:
+
+- Covers everything since Exam 2, including HW 7-10
+    review solutions if you haven't already -- esp. HW 7&8
+
+- Closed notes, closed computers
+- All open-ended problems
+- NO verification using modulus or division
+- NO verification using Logika facts
+
+
+Topics:
+- Predicate logic proofs with nested quantifiers
+- Recursive definitions
+- Proof techniques, including:
+    - Mathematical induction
+    - Direct (conditional) proofs
+    - Contrapositive proofs
+    - Proof by contradiction
+    - Proofs on sets
+- Programming logic, including:
+    - Assumes and asserts
+    - The subst rules and the algebra rule
+    - Verifying asserts in programs with variable assignments/
+        expressions/updates
+    - Verifying programs with if/else statements, functions,
+        loops, and recursion
+    - Function contracts (including the meaning of preconditions
+        and postconditions)
+    - Loop invariants
+    - Verifying "test code" that calls a function
+
+
+Work through practice exam.
