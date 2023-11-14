@@ -1,0 +1,32 @@
+import org.sireum.logika._
+
+l"""{
+    fact
+        def factDef(n: Z): Z
+            fOne. factDef(1) == 1
+            fBig.  ∀x: Z  x > 1 → factDef(x) == factDef(x - 1) * x
+}"""
+
+//want to return n!
+//5! = 5 * 4 * 3 * 2 * 1
+def factorial(n: Z): Z = {
+    var product: Z = 1
+    var count: Z = 1
+
+    while (count != n) {
+        count = count + 1
+        product = product * count
+    }
+
+    return product
+}
+
+/////////// Test code //////////////////
+
+//we still need to prove the precondition and the assert
+//will finish on Tuesday
+
+val test: Z = 3
+val answer: Z = factorial(test)
+
+assert(answer == 6)

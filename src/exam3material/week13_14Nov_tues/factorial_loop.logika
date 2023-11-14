@@ -24,7 +24,7 @@ def factorial(n: Z): Z = {
     l"""{
         1. product == 1                 premise //variable assignment
         2. count == 1                   premise //variable assignment
-        3. factDef(1) == 1              fact fOne //use proof definition
+        3. factDef(1) == 1              fact fOne //use recursive definition
         4. product == factDef(count)    algebra 1 2 3
         5. count >= 1                   algebra 2 //prove second invariant
     }"""

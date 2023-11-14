@@ -30,8 +30,14 @@ l"""{
 
 (why do we need to know how n and count compare to 1?)
 
+l"""{
+    1. factDef(1) == 1                                      (justification?)
+    2. ∀x: Z  x > 1 → factDef(x) == factDef(x - 1) * x      (justification?)
+}"""
 
---> look again at factorial example
+--> look at factorial code. How do we come up with loop invariant?
+
+--> finish factorial verification
 
 //////////////////////////////////////
 
