@@ -61,6 +61,9 @@ binary search bug
 
 --> what's the problem?
 
+    can cause overflow
+
+    int mid = low + (high-low)/2
 
     - in C++ for 20 years
     - in Java's original binary search
@@ -109,15 +112,21 @@ See jmlSyntax.txt for a primer
 
 
 Whose job is it to check preconditions?
+    the calling code
+
+since we can't enforce the calling code, we will check them at the beginning
+of the function
 
 
 What should a function do if its preconditions are not met?
     - return a dummy value?
 
-
+if precondition is not met, we will throw an exception
 
 
 How to enforce postconditions?
+
+before the function returns, put assert statements with the postconditions
 
 
 
@@ -144,6 +153,13 @@ JMLExample.java
 
 
 - add our function contract checks
+
+
+
+(<---- stopped here, will finish on Thursday ---->)
+
+
+
 
 - do full contract + checks on mult example
 
