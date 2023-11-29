@@ -1,0 +1,225 @@
+HW 11 (last assignment) due Tuesday, May 2
+    - follow HW instructions to add JUnit libraries and
+        IntelliJML
+    - may need to specify the JDK/SDK in the project
+    --> try it out soon to make sure you don't have tech issues
+
+
+Final exam: Friday, December 15 2:00-3:50 pm
+
+Remaining graded categories for the semester:
+- HW 11
+- final exam (required for everyone)
+- "midterm equivalent from final"
+    --> will make it so your final will replace
+        your lowest midterm, if it helps your grade
+
+///////////////////////////////////////
+
+Today:
+
+- Reminder of what we're doing
+- Writing JUnit tests
+- specifying programs with arrays
+- specifying programs with global invariants
+
+///////////////////////////////////////
+
+What are we doing with our function specifications?
+
+- using JML to write a precondition (requires) and postcondition (ensures)
+- in the function itself:
+    - at beginning, throw an exception if the precondition isn't met (why?)
+    - at end, assert that the postcondition is met (why?)
+
+
+--> we will also add unit tests to mostly serve as checks that we're
+    doing the above things (and to easily run the functions)
+
+
+//////////////////////////////////////
+
+(JMLExample.java)
+
+Review: add function contract + checks for mult function
+
+
+////////////////////////////
+
+JUnit tests
+
+- what are they for?
+
+- how to generate a test file for a class
+
+- how to add necessary libraries
+
+
+////////////////////////////
+
+Types of asserts in JUnit tests:
+
+
+Basic assert for checking an expected value after a method call:
+
+assertEquals((expected value), (test expression));
+
+
+
+///
+
+Assert that a method is throwing an exception
+(to test enforcement of preconditions):
+
+assertThrows(IllegalArgumentException.class,
+                () -> {
+                    methodCall(params);
+                });
+
+
+
+///
+
+Assert that two arrays have the same values:
+
+
+assertArrayEquals(expectedArray, actualArray);
+
+
+
+--> in all cases, can include message as an optional parameter
+
+
+///////////////////////////////////////
+
+Example: Write unit tests for doubleEach and mult
+
+
+///////////////////////////////////////
+
+(JMLArrays.java)
+Example: Write a method that takes an array of Strings and returns
+    a corresponding array of string lengths
+
+--> specification?
+
+
+--> write test method
+
+
+
+///////////////////////////////////////
+
+(JMLArrays.java)
+Example: Write a method that returns the min element in an array
+
+--> specification?
+
+
+
+
+///////////////////////////////////////
+
+Example: write specification for a method that finds the index of
+an element in an array, where we return -1 if we don't find it
+
+--> specification?
+
+
+public static int getIndex(int[] arr, int num)
+
+
+
+--> any ambiguity?
+
+
+
+////////////////////////////
+
+"Stateful" programs with global invariants
+
+- have global variables that help represent the state of the system
+- global invariants: state what should always be true about the system
+
+When writing methods that affect global variables:
+- global invariants are required to be true at the time of the method call
+- global invariants should STILL be true at the end of the method
+
+
+//////////////////////////////////////
+
+Example: bank account
+
+- balance field
+- elite field
+
+--> account holders have elite status if their balance is >= $1M
+
+--> what should our global invariants be?
+
+
+//////////////////////////////////////
+
+Global invariants in JML:
+
+//@public invariant (say something about public members);
+
+--> what does that mean about global invariants and PRIVATE fields?
+
+--> what can we use instead of a private field?
+
+
+///////////////////////////////////////
+
+Writing method specifications to help protect global invariants:
+
+- Preconditions (@requires) should NOT allow parameters that would violate
+    global invariants
+
+- Postconditions (@ensures) should describe what the method does
+    using PUBLIC members
+
+--> An *implied* part of the postcondition is that the global invariants
+    will still hold
+
+    - but you don't need to list global invariants as additional
+    postconditions
+
+
+////////////////////////////////////////
+
+Finishing Account class:
+
+- write withdraw and deposit methods
+
+--> how should we write specifications?
+
+
+////////////////////////////////////////
+
+Enforcing global invariants AND function specifications:
+
+public returnType method(params) {
+    //assert that the global invariants hold here
+    //if the preconditions don't hold, throw an exception
+
+    code for the method
+
+    //assert that the global invariants still hold
+    //assert that the postconditions hold
+}
+
+--> add checks to withdraw and deposit
+
+--> write JUnit tests for Account
+
+
+//////////////////////////////////////
+
+
+Next time:
+- More with global invariants
+- Best practices for specifications outside this class
+- Using a verification tool on our JML specifications
+- Termination
+- The Halting problem
