@@ -13,8 +13,8 @@ public class JMLExample {
         int ans = x + 1;
 
         //what should we do here?
-        assert ans == x+1;
-        assert ans >= 1;
+        assert ans == x+1 : "postcondition failed: should return x+1";
+        assert ans >= 1 : "postcondition failed: should return positive number";
 
         return ans;
     }
@@ -36,13 +36,19 @@ public class JMLExample {
 
         //what should we do here?
         for (int i = 0; i < nums.length; i++) {
-            assert nums[i] == numsOld[i]*2;
+            assert nums[i] == numsOld[i]*2 : nums[i] + " should be twice its original value";
         }
     }
 
     //what should our function contract be?
+    //@requires y >= 0;
+    //@ensures \result == x*y;
     public static int mult(int x, int y) {
         //what should we do here?
+
+        if (y < 0) {
+            throw new IllegalArgumentException("precondition violated: second parameter cannot be negative");
+        }
 
         int product = 0;
         for (int i = 0; i < y; i++) {
@@ -50,6 +56,8 @@ public class JMLExample {
         }
 
         //what should we do here?
+        assert product == x*y : "postcondition violated: should return product of parameters";
+
 
         return product;
     }

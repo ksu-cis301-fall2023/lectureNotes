@@ -1,4 +1,4 @@
-HW 11 (last assignment) due Tuesday, May 2
+HW 11 (last assignment) due Tuesday, December 5
     - follow HW instructions to add JUnit libraries and
         IntelliJML
     - may need to specify the JDK/SDK in the project
@@ -27,7 +27,7 @@ Today:
 
 What are we doing with our function specifications?
 
-- using JML to write a precondition (requires) and postcondition (ensures)
+- using JML to write a precondition (@requires) and postcondition (@ensures)
 - in the function itself:
     - at beginning, throw an exception if the precondition isn't met (why?)
     - at end, assert that the postcondition is met (why?)
@@ -125,8 +125,15 @@ an element in an array, where we return -1 if we don't find it
 
 --> specification?
 
-
-public static int getIndex(int[] arr, int num)
+//@requires arr != null;
+//@ensures (\result == -1 <==> (\forall int k; k >= 0 && k < arr.length; num != arr[k]))
+//@ensures ((\result >= 0 && \result < arr.length) <==>
+                    (\exists int k; k >= 0 && k < arr.length; num == arr[k] && \result == k));
+//@ensures ((\result >= 0 && \result < arr.length) <==>
+                    (\forall int k; k >= 0 && k < \result; arr[k] != num));
+public static int indexOf(int[] arr, int num) {
+    return -1;
+}
 
 
 
@@ -156,7 +163,8 @@ Example: bank account
 --> account holders have elite status if their balance is >= $1M
 
 --> what should our global invariants be?
-
+    balance should not be negative
+    elite == (balance >= 1000000)
 
 //////////////////////////////////////
 

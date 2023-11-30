@@ -4,23 +4,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JMLArraysTest {
+class JMLExampleTest {
 
     @Test
-    void getStringLengths() {
+    void mult() {
         //should generate exception when precondition is violated
         assertThrows(IllegalArgumentException.class, () ->
-        {
-            JMLArrays.getStringLengths(null);
-        });
+            {
+                JMLExample.mult(2, -1);
+            });
 
         //test a good example
-        assertArrayEquals(new int[]{3,1},
-                JMLArrays.getStringLengths(new String[]{"cat", "a"}));
-    }
-
-    @Test
-    void min() {
-
+        assertEquals(6, JMLExample.mult(2,3));
     }
 }
