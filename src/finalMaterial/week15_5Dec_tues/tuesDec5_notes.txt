@@ -1,4 +1,6 @@
 Final exam: Friday, December 15 2:00-3:50 pm
+    --> posted repo of practice problems
+    --> will review on Thursday, December 7
 
 
 HW 11 (last assignment) due tonight
@@ -12,11 +14,13 @@ Fan behavior:
     - changing the speed CANNOT turn the rotate off
 
 Current state: fan on, speed 3, rotate on. Can we call setSpeed(2)?
+    NO!
 
 Current state: fan off, speed 0, rotate off. Can we call setSpeed(1)?
+    yes (and you need to set the fan to on)
 
 Current state: fan on, speed 2, rotate off. Can we call setSpeed(0)?
-
+    NO! (can't jump speeds)
 
 
 Remaining graded categories for the semester:
@@ -33,7 +37,7 @@ Today:
 - Termination
 - The Halting problem
 - Using a verification tool on our JML specifications
-    (including a sorting algorithm)
+
 
 ///////////////////////////////////////
 
@@ -43,17 +47,24 @@ Account class - write deposit method
 
 Best practices outside class
 
+Clock
+minutes, seconds, hours, AM/PM
+
+tick()
+
 
 Highly recommend:
 - write global invariants for any class with fields/properties
 - think about whether any parameters would violate global invariants
     --> and if so, don't allow them!
+- consider the global invariants as you write the methods
+
 
 - don't need to use JML - but try to write your invariants/specifications
     in a clear, unambiguous way
 
-- write preconditions and postconditions for methods that
-    change arrays or do any sort of calculation
+- write (unambiguous, not necessarily JML) preconditions and postconditions
+    for all methods
 
 - throw exceptions in a method where your preconditions aren't met
 
@@ -89,6 +100,11 @@ is EXACTLY the same approach we used in Logika.
 
 
 --> What approach is that?
+    to prove the postcondition
+
+    we would know all loop invariants held at the end of the loop
+    !(loop condition)
+    use those pieces to prove the postcondition
 
 
 
@@ -115,8 +131,7 @@ We need to show termination to achieve total correctness
 Termination with a loop.
     - create measure of how much work is left
         (i.e., how many iterations are left)
-    - show that the measure DECREASES from the beginning
-        of the iteration to the end
+    - show that the measure DECREASES with each iteration
     - show that if there is no more work to do, then the loop has finished
     - see example
 
@@ -161,6 +176,16 @@ def DoOpposite(Function):
 
 What if we do: DoOpposite(DoOpposite)?
 
+    Case 1: suppose DoOpposite(DoOpposite) loops forever.
+        Then Halt(DoOpposite, DoOpposite) returned true.
+        Then DoOpposite(DoOpposite) halts. Contradiction.
+
+     Case 2. Suppose DoOpposite(DoOpposite) halts. Then
+        Halt(DoOpposite, DoOpposite) must have returned false.
+        Then DoOpposite(DoOpposite) doesn't halt. Contradiction.
+
+Both cases have contradiction, so our assumption was wrong. Halt
+can't exist.
 
 //////////////////////////////////
 

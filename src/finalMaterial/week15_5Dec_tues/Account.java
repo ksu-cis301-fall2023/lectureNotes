@@ -21,6 +21,23 @@ public class Account {
 
     //write withdrawal and deposit methods + specifications
 
+    // @requires amount >= 0;
+    // @ensures getBalance() == \old(getBalance()) + amount;
+    public void deposit(int amount) {
+        //should enforce precondition
+
+        //should check globals
+
+        _balance += amount;
+
+        if (_balance >= 1000000) {
+            _elite = true;
+        }
+
+        //should assert postcondition
+        //should check globals
+    }
+
     //@requires amount >= 0;
     //@requires amount <= getBalance();
     //@ensures getBalance() == \old(getBalance()) - amount;
@@ -35,7 +52,7 @@ public class Account {
             throw new IllegalArgumentException("precondition violated");
         }
 
-        if (amount >= 0 && amount < _balance) {
+        if (amount >= 0 && amount <= _balance) {
             _balance -= amount;
         }
 

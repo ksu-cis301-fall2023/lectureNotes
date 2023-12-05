@@ -3,25 +3,29 @@ package finalMaterial.week15_5Dec_tues;
 public class OpenJMLTest {
 
     //write function contract
+    // @requires a < Integer.MAX_VALUE;
+    // @ensures \result == a + 1;
     public static int add(int a) {
         return a + 1;
     }
 
     //write function contract
+    // @requires a < Integer.MAX_VALUE - 1;
+    // @ensures \result == x + 2; 
     public static int addTwo(int x) {
         int temp = add(x);
         return add(temp);
     }
 
-    /*
-
     //@ requires arr != null;
     //@ ensures \forall int k; 0 <= k && k < arr.length; \old(arr[k]) == val ==> arr[k] == 0;
+    //@ ensures \forall int k; 0 <= k && k < arr.length; \old(arr[k]) != val ==> arr[k] == \old(arr[k]);
     public void zeroMatching(int[] arr, int val) {
 
         //@ loop_invariant 0 <= i <= arr.length; // Bounds check
         //@ loop_invariant \forall int k; 0 <= k && k < i; \old(arr[k]) == val ==> arr[k] == 0;
         //@ loop_invariant \forall int k; 0 <= k && k < i; \old(arr[k]) != val ==> arr[k] == \old(arr[k]);
+        //@ loop_invariant \forall int k; i <= k && k < arr.length; arr[k] == \old(arr[k]);
         //@ decreasing arr.length-i; // i goes up
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == val) {
@@ -29,7 +33,6 @@ public class OpenJMLTest {
             }
         }
     }
-    */
 
     //@ requires arr != null;
     //@ ensures \forall int k; 0 <= k && k < arr.length-1; arr[k] <= arr[k+1];
