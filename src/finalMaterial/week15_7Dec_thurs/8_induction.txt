@@ -1,0 +1,6 @@
+Use mathematical induction to prove that the following expression:
+    n(n+1)(n+5)
+Is a multiple of 3 for all integers n>=1.
+
+Let P(n) be the claim that n(n+1)(n+5) is a multiple of 3
+    for all integer n >= 1.
