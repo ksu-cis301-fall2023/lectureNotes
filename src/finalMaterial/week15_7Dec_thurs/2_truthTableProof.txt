@@ -5,16 +5,22 @@ Conclusion: p → ¬r
 
 Explain from your results why we know the argument is valid.
 
-p q r | p->q    |   q → ¬r      |  p → ¬r
+p q r | p → q    |   q → ¬r      |  p → ¬r
 ------------------------------------------
-T T T |
-T T F |
-T F T |
-T F F |
-F T T |
-F T F |
-F F T |
-F F F |
+T T T |   T            F F            F F
+T T F |   T            T T            T T
+T F T |   F            T F            F F
+T F F |   F            T T            T T
+F T T |   T            F F            T F
+F T F |   T            T T            T T
+F F T |   T            T F            T F
+F F F |   T            T T            T T
 
+Makes premises both true: [T T F] [F T F] [F F T] [F F F]
+The conclusion is also true for those truth assignments so the argument is
+valid.
+
+To show invalid, find ONE truth assignment that makes all premises true
+but conclusion false.
 
 (How do we show an argument is *invalid*?)

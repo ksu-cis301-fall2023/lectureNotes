@@ -16,14 +16,18 @@ def diff(big: Z, small: Z): Z = {
     }"""
 
     //PREMISES:
+    1. big >= small (precondition)
 
     var count: Z = 0
     var cur: Z = big
 
     //PREMISES:
-
+    1. count == 0 (variable assignment)
+    2. cur == big (variable assignment)
+    3. big >= small (precondition is still true)
 
     //SHOW:
+    count == (big-cur) (prove invariant before loop)
 
     while (cur != small) {
         l"""{
@@ -33,16 +37,24 @@ def diff(big: Z, small: Z): Z = {
         }"""
 
         //PREMISES:
+        1. cur != small (loop condition is true)
+        2. count == (big-cur)   (invariant)
+        3. big >= small (precondition is still true)
 
         cur = cur - 1
         count = count + 1
 
         //SHOW:
+        1. count == (big-cur)   (show invariant still holds)
     }
 
     //PREMISES:
+    1. !(cur != small) (loop condition is false)
+    2. count == (big-cur) (invariant holds at end of iteration)
+    3. big >= small (precondition is still true)
 
     //SHOW:
+    count == big-small (prove the postcondition)
 
     return count
 }
@@ -52,13 +64,18 @@ def diff(big: Z, small: Z): Z = {
 var one: Z = 10
 
 //PREMISES:
+1. one == 10 (variable assignment
 
 //SHOW:
+1. one+4 >= one (prove precondition)
 
 var answer: Z = diff(one+4, one)
 
 //PREMISES:
+1. answer == (one+4)-one (postcondition)
+2. one == 10 (still true)
 
 //SHOW:
+1. answer == 4 (for assert)
 
 assert(answer == 4)

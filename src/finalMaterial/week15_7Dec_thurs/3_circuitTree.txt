@@ -4,6 +4,8 @@ Draw a circuit for the following propositional logic statement:
 
 (see circuit.png in this folder)
 
+top-level: AND
+
 
 
 Draw a parse tree for the following propositional logic statement:

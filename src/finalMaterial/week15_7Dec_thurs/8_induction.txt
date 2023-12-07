@@ -4,3 +4,37 @@ Is a multiple of 3 for all integers n>=1.
 
 Let P(n) be the claim that n(n+1)(n+5) is a multiple of 3
     for all integer n >= 1.
+
+
+
+Base case. We must show that P(n) holds for the smallest n, where n = 1.
+We have that 1(1+1)(1+5) = 1*2*6 = 12, which is a multiple of 3.
+The base case holds.
+
+
+
+Inductive step. Assume the inductive hypothesis -- that P(k) holds
+for some fixed integer k >= 1. We must show that P(k+1) also holds, i.e.,
+we must prove that (k+1)((k+1)+1)((k+1)+5) is a multiple of 3.
+
+We have that:
+    (k+1)((k+1)+1)((k+1)+5) = (k+1)(k+2)(k+6).
+
+If P(k) holds, we know that k(k+1)(k+5) is divisible by 3.
+Since 3 is a prime number, this tells us that at least one of
+k, k+1, or k+5 is a multiple of 3. We consider each case:
+
+    Suppose k is a multiple of 3. Then k+6 is also multiple of 3, and so
+    (k+1)(k+2)(k+6) is a multiple of 3.
+
+    Suppose k+1 is a multiple of 3. Then (k+1)(k+2)(k+6) is also
+    a multiple of 3.
+
+    Suppose k+5 is a multiple of 3. Then k+2 is also a multiple of 3,
+    and so (k+1)(k+2)(k+6) is a multiple of 3.
+
+In all cases, (k+1)(k+2)(k+6) is a multiple of 3, so we have shown
+ P(k+1). The inductive step holds.
+
+
+Thus P(n) holds for all natural numbers n.

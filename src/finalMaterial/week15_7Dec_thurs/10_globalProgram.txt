@@ -23,7 +23,11 @@ public class VotingMachine {
     //@public invariant getCand2Votes() >= 0;
 
 
-
+    //@requires cand == 1 || cand == 2;
+    //@requires votes >= 0;
+    //@ensures getTotalVotes() == \old(getTotalVotes()) + votes;
+    //@ensures cand == 1 ==> (getCand1Votes() == \old(getCand1Votes()) + votes);
+    //@ensures cand == 2 ==> (getCand2Votes() == \old(getCand2Votes()) + votes);
     public void castVotes(int cand, int votes) {
         if (cand == 1) {
             _cand1Votes += votes;
